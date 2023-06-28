@@ -1,0 +1,36 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  .section-enter {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  
+  .section-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .section-exit {
+    opacity: 1;
+    position: absolute;
+  }
+  
+  .section-exit-active {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 300, transform 300;
+  }
+
+  /* #root {
+    margin: auto;
+  } */
+
+  .main__container {
+    width: fit-content;
+    margin: auto;
+  }
+  
