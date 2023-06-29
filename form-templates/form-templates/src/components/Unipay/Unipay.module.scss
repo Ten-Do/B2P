@@ -1,10 +1,19 @@
 form {
-    padding: 3% 4%;
-    width: 350px;
+    padding: 48px 56px;
+    width: 412px;
+    min-height: 518px;
     margin: 5vh auto;
-    border-radius: 15px;
+    border-radius: 12px;
+
+    position: sticky;
+    top: 120px;
+    left: 514px;
 
     box-shadow: 0px 1px 17px 2px rgba(62, 69, 73, 0.132);
+
+    input:active {
+        border-bottom: 1px solid #FF3B30;
+    }
 }
 
 h1 {
@@ -15,12 +24,12 @@ h1 {
 }
 
 p {
-    color: #bf1650;
+    color: #FF3B30;
 }
 
 p::before {
     display: inline;
-    content: "⚠ ";
+    //content: "⚠ ";
 }
 
 input {
@@ -38,6 +47,12 @@ input {
     }
 }
 
+.amount__icon {
+    position: relative;
+    top: 50px;
+    left: 350px;
+}
+
 label {
     line-height: 2;
     text-align: left;
@@ -48,8 +63,7 @@ label {
     font-weight: 400;
 }
 
-.submit__button,
-input[type="submit"] {
+.submit__button {
     background: #FF335F;
     border-radius: 35px;
     color: white;
@@ -59,19 +73,18 @@ input[type="submit"] {
     font-weight: 500;
 
     &:hover {
-        background: #dc2647;
+        background: #FF446D;
         transition: 0.2s;
+        box-shadow: 0px 1px 20px -5px #FF335F;
+    }
+
+    &:active {
+        transition: 0.3s all;
+        background: #E1264F;
+        box-shadow: none;
     }
 }
 
-.submit__button:active,
-input[type="button"]:active,
-input[type="submit"]:active {
-    transition: 0.3s all;
-    //transform: translateY(3px);
-    border: none;
-    opacity: 0.8;
-}
 
 input:disabled {
     opacity: 0.4;
