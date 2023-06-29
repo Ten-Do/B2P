@@ -28,7 +28,7 @@ export default function Unipay() {
     console.log(watch("description"));
 
     return(
-        <form autoComplete='off'
+        <form className={UnipayStyles.unipay__form} autoComplete='off'
 
         onSubmit={handleSubmit((data) => {
           alert(JSON.stringify(data));
