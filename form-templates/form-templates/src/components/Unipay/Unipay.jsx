@@ -2,7 +2,12 @@ import React, {useState} from 'react';
 import { useForm } from "react-hook-form";
 import ReactDOM from "react-dom";
 
+
+/* STYLES */
 import UnipayStyles from './Unipay.module.scss';
+
+
+/* ICONS */
 import AmountValue from '../../assets/unipay-input-value.png';
 
 export default function Unipay() {
