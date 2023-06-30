@@ -6,7 +6,7 @@ import { CSSTransition } from "react-transition-group";
 
 /* STYLES */
 //import './App.css';
-import "./styles/styles.css";
+import "./styles/App.scss";
 
 
 /* COMPONENTS */
@@ -20,6 +20,7 @@ export default function App() {
 
   const setUnipay = () => setActiveSection(sections[0]);
   const setPayment = () => setActiveSection(sections[1]);
+  
   return (
     <div className='main__container'>
       <section className='btns-slider__container'>

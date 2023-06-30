@@ -1,3 +1,7 @@
+/* reset styles */
+@import './reset.scss';
+
+
 /* .App {
     font-family: sans-serif;
     text-align: center;
@@ -5,44 +9,41 @@
     margin: 0 auto;
   } */
 
-  * {
+* {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 16px;
     outline: none;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
 }
   
-  .section-enter {
+.section-enter {
     opacity: 0;
     transform: translateX(100%);
-  }
-  
-  .section-enter-active {
+}
+
+.section-enter-active {
     opacity: 1;
     transform: translateX(0);
     transition: opacity 300ms, transform 300ms;
-  }
-  
-  .section-exit {
+}
+
+.section-exit {
     opacity: 1;
     position: absolute;
-  }
-  
-  .section-exit-active {
+}
+
+.section-exit-active {
     opacity: 0;
     transform: translateX(100%);
     transition: opacity 300, transform 300;
-  }
+}
 
-  .main__container {
+.main__container {
     /* width: fit-content; */
     margin: auto;
-  }
+}
 
-  .btns-slider__container {
+.btns-slider__container {
     width: fit-content;
     margin: 0 auto;
-  }
+}
   
