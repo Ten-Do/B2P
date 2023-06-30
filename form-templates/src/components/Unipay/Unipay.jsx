@@ -8,6 +8,7 @@ import UnipayStyles from './Unipay.module.scss';
 
 
 /* ICONS */
+// svg inline 
 import AmountValue from '../../assets/unipay-input-value.png';
 
 export default function Unipay() {
@@ -40,7 +41,7 @@ export default function Unipay() {
         <figure className={UnipayStyles.amount__icon}>
           <img src={AmountValue} alt="amount__value" />
         </figure>
-        <input className={UnipayStyles.amount__input} type='number' {...register("amount", {required: true, minLength:1, maxLength: 7})} placeholder="0" />
+        <input className={UnipayStyles.amount__input} type='text' {...register("amount", {required: true, minLength:1, maxLength: 7})} placeholder="0" />
         {errors.amount && <p>Поле обязательно</p>}
 
         <label>Email</label>

@@ -1,6 +1,7 @@
 .unipay__form {
     padding: 48px 56px;
-    width: 412px;
+    width: 100%;
+    max-width: 412px;
     min-height: 518px;
     margin: 5vh auto;
     border-radius: 12px;
@@ -29,7 +30,6 @@ p {
 
 p::before {
     display: inline;
-    //content: "⚠ ";
 }
 
 input {
@@ -45,6 +45,16 @@ input {
     &::placeholder {
         color: rgb(223, 223, 223);
     }
+
+    &:active,
+    &:focus,
+    &:hover {
+        border-bottom: 1px solid red;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .amount__icon {
@@ -54,7 +64,6 @@ input {
 }
 
 label {
-    line-height: 2;
     text-align: left;
     display: block;
     margin-bottom: 13px;
@@ -67,7 +76,7 @@ label {
     background: #FF335F;
     border-radius: 35px;
     color: white;
-    margin-top: 40px;
+    //margin-top: 40px;
     padding: 20px;
     font-size: 20px;
     font-weight: 500;
