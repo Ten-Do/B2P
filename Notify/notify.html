@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>SUAI PAY</title>
+  <style>
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .notify {
+      width: 90vw;
+      max-width: 320px;
+      height: 80vh;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .notify__emoji {
+      font-size: 88px;
+    }
+
+    .notify__message {
+      font-family: sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 32px;
+      align-content: center;
+      color: #595959;
+      text-align: center;
+    }
+
+    /* Footer */
+    .footer__container {
+      width: 100%;
+      height: 200px;
+      position: fixed;
+      bottom: 0;
+      background-color: #F2F2F2;
+    }
+
+    .footer__container .footer__items {
+      margin: 50px auto;
+      /* position: relative;
+      top: 30%;
+      left: 45%; */
+    }
+
+    .footer__container .footer__items .footer__logos,
+    .footer__container .footer__items .footer__order,
+    .footer__container .footer__items .footer__secure {
+      display: flex;
+      justify-content: center;
+    }
+
+    .footer__container .footer__items .footer__logos {
+      gap: 12px;
+
+    }
+
+    .footer__container .footer__items .footer__logos figure {
+      margin: 0;
+    }
+
+    .footer__container .footer__items .footer__secure figure {
+      margin: 17px 10px;
+    }
+
+    .footer__container .footer__items .footer__secure .secure__info {
+      color: #A6A6A6;
+      padding: 8px;
+      width: 19%;
+    }
+
+
+    .footer__container .footer__items .footer__order {
+      color: #A6A6A6;
+    }
+  </style>
+</head>
+<!-- ниже нужно передать переменные emoji, где будет лежать эмодзи, и message, где будет лежать сообщение об ошибке или успехшной операции -->
+<!-- узнать что прходит с сервера -->
+<body>
+  <div class="center">
+    <div class="notify center">
+      <span class="notify__emoji" th:text="${status ==  'success' ? 🎉 : 😿}">😿</span>
+      <p class="notify__message" th:text="${message}">Не удалось оплатить</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer__container">
+    <section class="footer__items">
+      <div class="footer__logos">
+        <figure>
+          <img src="assets/visa-icon.svg" alt="visa__icon" />
+        </figure>
+        <figure>
+          <img src="assets/mastercard-icon.svg" alt="mcard__icon" />
+        </figure>
+        <figure>
+          <img src="assets/mir.svg" alt="mir__icon" />
+        </figure>
+      </div>
+
+      <div class="footer__secure">
+        <figure class="lock__icon">
+          <img src="assets/ic_lock.svg" alt="lock__icon" />
+        </figure>
+        <span class="secure__info">Данные банковской карты будут
+          переданы в зашифрованном виде</span>
+      </div>
+
+      <div class="footer__order">Заказ №112480</div>
+    </section>
+  </div>
+</body>
+
+</html>
+
+
+
+<!-- 
+комиссия
+
+отображение кнопок в оплате ?
+
+показывать email в форме или нет
+
+
+-->
+
+
+
+<!-- 
+функции для ввода данных (стильно модно молодежно)
+
+
+
+ -->
+
+ <!-- админка
+логин
+показать доп кнопку оплаты ? при нажатии на нее мы отправляем токен на бэк
+поле загрузки логотипа на сервак (каждому магазину)
+таблица комиссий (платежная система / процент комиссии (у плетежных систем) / мин. ставка (опционально))
+функция для отправки запроса на сервер (не долбим сервер) (debounce)
+-->
