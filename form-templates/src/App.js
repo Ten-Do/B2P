@@ -29,7 +29,7 @@ export default function App() {
       <CSSTransition
         classNames="section"
         in={activeSection === sections[0]}
-        timeout={300}
+        // timeout={300}
         unmountOnExit
       >
         <Unipay></Unipay>
@@ -37,7 +37,7 @@ export default function App() {
       <CSSTransition
         classNames="section"
         in={activeSection === sections[1]}
-        timeout={300}
+        // timeout={300}
         unmountOnExit
       >
         <Payment></Payment>
