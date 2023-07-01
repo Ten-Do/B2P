@@ -5,7 +5,6 @@ import { CSSTransition } from "react-transition-group";
 
 
 /* STYLES */
-//import './App.css';
 import "./styles/App.scss";
 
 
