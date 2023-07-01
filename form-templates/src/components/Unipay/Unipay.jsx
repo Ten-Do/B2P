@@ -53,7 +53,7 @@ export default function Unipay() {
           {...register("description", { required: true})} placeholder="что-то о заказе"/>
         {errors.description && <p>Поле обязательно</p>}
 
-        <input className={UnipayStyles.submit__button} type="submit" value='Создать' />
+        <button className={UnipayStyles.submit__button} type="button">Создать</button>
       </form>
     );
 }

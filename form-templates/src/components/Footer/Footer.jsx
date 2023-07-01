@@ -6,10 +6,10 @@ import FooterStyles from './Footer.module.scss';
 
 
 /* ICONS */
-import VisaIcon from '../../assets/visa-logo.png';
-import McardIcon from '../../assets/mcard-logo.png';
-import MirIcon from '../../assets/mir-logo.png';
-import LockIcon from '../../assets/lock-logo.png';
+import VisaIcon from '../../assets/visa-logo.svg';
+import McardIcon from '../../assets/mcard-logo.svg';
+import MirIcon from '../../assets/mir-logo.svg';
+import LockIcon from '../../assets/lock-logo.svg';
 
 
 export default function Footer() {
