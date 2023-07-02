@@ -4,8 +4,8 @@
 @import '../../styles/vars.scss';
 
 //GENERAL
-$footer__height: 200px;
-$footer__items-margin: 50px auto;
+$footer__height: 180px;
+$footer__items-margin: 30px auto;
 $footer__logos-gap: 12px;
 $footer__lock-margin: 5px;
 $footer__text-color: #A6A6A6;
@@ -26,7 +26,8 @@ $secure__info-padding: 8px;
         .footer__logos,
         .footer__order,
         .footer__secure {
-            @include center__flex
+            @include center__flex;
+            margin-bottom: 12px;
         }
 
         .footer__logos {

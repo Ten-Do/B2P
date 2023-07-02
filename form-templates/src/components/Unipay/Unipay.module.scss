@@ -10,19 +10,16 @@
 $error-color: #FF3B30;
 $placeholder-color: rgb(223, 223, 223);
 $white-color: #FFF;
-$cursor__pointer: pointer;
 $reset-style: none;
-$transition: 0.3s all;
 
 // LABEL
-$label__text-positioning: left;
 $label__font-weight: 400;
 $label-color: rgb(155, 155, 155);
 
 // INPUT
 $input__maxwidth: 300px;
 $input__minheight: 30px;
-$input__margin-bottom: 50px;
+$input__margin-bottom: 40px;
 $input__border-color: rgb(211, 211, 211);
 
 // H1
@@ -52,6 +49,15 @@ $button__desktop-width: 300px;
     input:active {
         border-bottom: 1px solid $error-color;
     }
+
+    .input__container {
+        position: relative;
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        row-gap: 30px;
+
+        margin-bottom: 50px;
+    }
 }
 
 h1 {
@@ -74,8 +80,8 @@ input {
     width: $width;
     max-width: $input__maxwidth;
     min-height: $input__minheight;
-    margin-bottom: $input__margin-bottom;
     border-bottom: 1px solid $input__border-color;
+    padding: 10px 0;
 
     &::placeholder {
         color: $placeholder-color;
@@ -85,27 +91,28 @@ input {
     &:focus,
     &:hover {
         border-bottom: 1px solid $error-color;
-        transition: $transition;
+        transition: 0.3s all;
     }
 
     &:hover {
-        cursor: $cursor__pointer;
+        cursor: pointer;
     }
 }
 
-figure {
-    //position: absolute;
-    top: 50px;
-    left: 350px;
+.amount__icon {
+    position: absolute;
+    top: 30px;
+    left: 300px;
 }
 
+
 label {
-    text-align: $label__text-positioning;
+    text-align: left;
     color: $label-color;
     font-weight: $label__font-weight;
 
     &:hover {
-        cursor: $cursor__pointer;
+        cursor: pointer;
     }
 }
 
@@ -121,13 +128,13 @@ label {
 
     &:hover {
         background: $button__background-hover;
-        cursor: $cursor__pointer;
-        transition: $transition;
+        cursor: pointer;
+        transition: 0.3s all;
         box-shadow: 0px 1px 20px -5px $button__background;
     }
 
     &:active {
-        transition: $transition;
+        transition: 0.3s all;
         background: $button__background-active;
         box-shadow: $reset-style;
     }

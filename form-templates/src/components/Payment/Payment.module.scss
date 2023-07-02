@@ -6,66 +6,151 @@
 
 @import '../../styles/vars.scss';
 
-// POSITIONING
-$position__relative: relative;
-$position__absolute: absolute;
 
 // GENERAL
 $error-color: #FF3B30;
 $placeholder-color: rgb(223, 223, 223);
 $cursor__pointer: pointer;
-$transition: 0.3s all;
+$white-color: #FFF;
+$reset-style: none;
 
 // INPUT
 $input__maxwidth: 300px;
 $input__minheight: 30px;
-$input__margin-bottom: 50px;
+$input__margin-bottom: 20px;
 $input__border-color: rgb(211, 211, 211);
+$chekbox__label-color: #595959;
+$chekbox__checked-color: #FF335F;
 
-.card__form {
-    padding: $form-padding;
+// BUTTON 
+$button__background: #A6A6A6;
+$button__background-hover: #7d7d7d;
+$button__background-active: #7d7d7d;
+$button__font-weight: 500;
+$button__font-size: 20px;
+$button__padding: 20px;
+$button__border-radius: 35px;
+$button__desktop-width: 300px;
+
+.form__container {
+    margin: $form-margin;
     width: $width;
     max-width: $form-maxwidth;
-    min-height: $form-minheight;
-    margin: $form-margin;
-    position: $position__relative;
-    @include form__appearance;
 
-    input {
-        box-sizing: border-box;
+    .card__form {
+        padding: $form-padding;
+        min-height: $form-minheight;
+        margin-bottom: 25px;
+        position: relative;
+        @include form__appearance;
+
+        input {
+            box-sizing: border-box;
+            width: $width;
+            max-width: $input__maxwidth;
+            min-height: $input__minheight;
+            margin-bottom: $input__margin-bottom;
+            border-bottom: 1px solid $input__border-color;
+
+            &::placeholder {
+                color: $placeholder-color;
+            }
+
+            &:active,
+            &:focus,
+            &:hover {
+                border-bottom: 1px solid $error-color;
+                transition: 0.3s all;
+            }
+
+            &:hover {
+                cursor: $cursor__pointer;
+            }
+        }
+
+        .tinkoff__logo {
+            width: fit-content;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .card__attribites {
+
+            .date__attribute {
+                @include spaceBetween__flex;
+                gap: 35px;
+            }
+        }
+    }
+
+    .savecard__block {
+        @include center__flex;
+        margin-bottom: 40px;
+
+        .checkbox__label {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: $chekbox__label-color;
+            font-size: 15px;
+            font-weight: 400;
+
+            input {
+                width: 24px;
+                accent-color: $chekbox__checked-color;
+            }
+        }
+    }
+}
+
+
+.payment__agreement {
+    @include center__flex;
+    flex-direction: column;
+    align-items: center;
+
+    .submit__button {
+        background: $button__background;
+        border-radius: $button__border-radius;
+        color: $white-color;
+        padding: $button__padding;
+        font-size: $button__font-size;
+        font-weight: $button__font-weight;
         width: $width;
-        max-width: $input__maxwidth;
-        min-height: $input__minheight;
-        margin-bottom: $input__margin-bottom;
-        border-bottom: 1px solid $input__border-color;
-
-        &::placeholder {
-            color: $placeholder-color;
-        }
-
-        &:active,
-        &:focus,
-        &:hover {
-            border-bottom: 1px solid $error-color;
-            transition: $transition;
-        }
+        max-width: $button__desktop-width;
+        margin-bottom: 12px;
 
         &:hover {
-            cursor: $cursor__pointer;
+            background: $button__background-hover;
+            cursor: pointer;
+            transition: 0.2s all;
+            box-shadow: 0px 1px 20px -5px $button__background;
+        }
+
+        &:active {
+            transition: 0.2s all;
+            background: $button__background-active;
+            box-shadow: $reset-style;
         }
     }
 
-    .tinkoff__logo {
-        width: fit-content;
-        position: $position__absolute;
-        top: 20px;
-        right: 20px;
-    }
+    .agreement__policy {
+        color: $button__background;
+        align-items: center;
+        width: 100%;
+        max-width: 240px;
+        font-size: 11px;
+        padding: 0 5px;
 
-    .card__attribites {
-
-        .date__attribute {
-            @include spaceBetween__flex;
+        p {
+            width: 100%;
+            max-width: 240px;
         }
     }
+}
+
+.bold__span {
+    font-size: 11px;
+    text-decoration: underline;
 }

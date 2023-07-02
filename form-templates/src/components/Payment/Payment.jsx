@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useForm } from "react-hook-form";
-import ReactDOM from "react-dom";
 
 
 /* COMPONENTS */
 import Footer from '../Footer/Footer';
+import Button from '../../UI/Button/Button';
 
 
 /* STYLES */
@@ -14,7 +14,7 @@ import PaymentStyles from './Payment.module.scss';
 /* ICONS */
 import TinkoffLogo from '../../assets/tinkoff-logo.svg';
 
-export default function Payment() {
+export default function Payment({amount}) {
 
     const {
         register,
@@ -29,17 +29,16 @@ export default function Payment() {
         }
     });
 
-    console.log(watch("code"));
-
     return(
         <>
-        <section>
+        <section className={PaymentStyles.form__container}>
             <form className={PaymentStyles.card__form} autoComplete='off'>
 
             {/* Tinkoff Card logo */}
             <figure className={PaymentStyles.tinkoff__logo}>
                 <img src={TinkoffLogo} alt="tinkoff__logo" />
              </figure>
+
 
                 <div className={PaymentStyles.card__attribites}>
                     <div className={PaymentStyles.number__attribute}>
@@ -60,6 +59,18 @@ export default function Payment() {
                     </div>
                 </div>
             </form>
+
+            <div className={PaymentStyles.savecard__block}>
+            <label className={PaymentStyles.checkbox__label}>
+            <input type="checkbox" />
+            Сохранить карту для следующих покупок
+            </label>
+            </div>
+
+            <div className={PaymentStyles.payment__agreement}>
+            <Button className={PaymentStyles.submit__button} type='submit'>Оплатить {amount ?? 0}₽</Button>
+            <p className={PaymentStyles.agreement__policy}>Нажимая на кнопку «Перевести», вы соглашаетесь с <b className={PaymentStyles.bold__span}>условиями оферты</b></p>
+            </div>
         </section>
         <Footer />
         </>
