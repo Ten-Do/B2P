@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import { useForm } from "react-hook-form";
 
+/* COMPONENTS */
+import Button from '../../UI/Button/Button';
+
 
 /* STYLES */
 import UnipayStyles from './Unipay.module.scss';
@@ -62,9 +65,6 @@ export default function Unipay() {
         <label
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}>Введите сумму заказа
-        {/* <figure className={UnipayStyles.amount__icon}>
-          <img src={AmountValue} alt="amount__value" />
-        </figure> */}
         <figure 
         className={UnipayStyles.amount__icon}>
           <AmountValueIcon 
@@ -87,7 +87,7 @@ export default function Unipay() {
         </label>
         </div>
 
-        <button className={UnipayStyles.submit__button} type="submit">Создать</button>
+        <Button className={UnipayStyles.submit__button} type={'submit'} name={'Создать'}></Button>
       </form>
     );
 }

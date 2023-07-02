@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 
 /* COMPONENTS */
 import Footer from '../Footer/Footer';
+import Button from '../../UI/Button/Button';
 
 
 /* STYLES */
@@ -69,7 +70,7 @@ export default function Payment() {
             </div>
 
             <div className={PaymentStyles.payment__agreement}>
-            <button className={PaymentStyles.submit__button} type='submit'>Оплатить 12 500₽</button>
+            <Button className={PaymentStyles.submit__button} type={'submit'} name={'Оплатить 12 500₽'}></Button>
             <p className={PaymentStyles.agreement__policy}>Нажимая на кнопку «Перевести», вы соглашаетесь с <b className={PaymentStyles.bold__span}>условиями оферты</b></p>
             </div>
         </section>
