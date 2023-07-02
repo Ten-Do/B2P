@@ -14,7 +14,7 @@ $cursor__pointer: pointer;
 // INPUT
 $input__maxwidth: 300px;
 $input__minheight: 30px;
-$input__margin-bottom: 50px;
+$input__margin-bottom: 20px;
 $input__border-color: rgb(211, 211, 211);
 
 .card__form {
@@ -61,6 +61,7 @@ $input__border-color: rgb(211, 211, 211);
 
         .date__attribute {
             @include spaceBetween__flex;
+            gap: 35px;
         }
     }
 }
