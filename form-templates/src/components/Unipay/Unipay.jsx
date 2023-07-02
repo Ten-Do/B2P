@@ -11,7 +11,7 @@ import UnipayStyles from './Unipay.module.scss';
 
 /* ICONS */
 // svg inline 
-const AmountValueIcon = ({hoverColor}) => (
+const AmountValueIcon = ({fillColor}) => (
   <svg
   fill='none'
   width="12" 
@@ -26,30 +26,19 @@ const AmountValueIcon = ({hoverColor}) => (
 
 export default function Unipay() {
 
-  const [isHovered, setIsHovered] = useState(false);
-
     const {
         register,
         handleSubmit,
-        watch,
+        // watch,
         formState: { errors }
         } = useForm({
+        mode: 'onBlur',
         defaultValues: {
             amount: "",
             email: "",
             description: "",
         }
     });
-
-    console.log(watch("description"));
-
-    const handleMouseEnter = () => {
-      setIsHovered(true);
-    };
-  
-    const handleMouseLeave = () => {
-      setIsHovered(false);
-    };
   
 
     return(
@@ -62,13 +51,11 @@ export default function Unipay() {
         <h1 className={UnipayStyles.form__title}>Создание заказа</h1>
 
         <div className={UnipayStyles.input__container}>
-        <label
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}>Введите сумму заказа
+        <label>Введите сумму заказа
         <figure 
         className={UnipayStyles.amount__icon}>
           <AmountValueIcon 
-          hoverColor={isHovered ? 'red' : 'rgb(155, 155, 155)'}
+          fillColor={errors.amount ? 'red' : 'rgb(155, 155, 155)'}
           className={UnipayStyles.amount__icon__svg}/>
         </figure>
         <input className={UnipayStyles.amount__input} type='text' {...register("amount", {required: true, minLength:1, maxLength: 7})} placeholder="0" />
