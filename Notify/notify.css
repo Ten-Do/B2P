@@ -33,14 +33,14 @@
   /* Footer */
   .footer__container {
     width: 100%;
-    height: 200px;
+    height: 180px;
     position: fixed;
     bottom: 0;
     background-color: #F2F2F2;
   }
 
   .footer__items {
-    margin: 40px auto;
+    margin: 30px auto;
   }
 
   .footer__logos,
