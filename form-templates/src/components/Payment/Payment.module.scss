@@ -6,15 +6,10 @@
 
 @import '../../styles/vars.scss';
 
-// POSITIONING
-$position__relative: relative;
-$position__absolute: absolute;
-
 // GENERAL
 $error-color: #FF3B30;
 $placeholder-color: rgb(223, 223, 223);
 $cursor__pointer: pointer;
-$transition: 0.3s all;
 
 // INPUT
 $input__maxwidth: 300px;
@@ -28,7 +23,7 @@ $input__border-color: rgb(211, 211, 211);
     max-width: $form-maxwidth;
     min-height: $form-minheight;
     margin: $form-margin;
-    position: $position__relative;
+    position: relative;
     @include form__appearance;
 
     input {
@@ -47,7 +42,7 @@ $input__border-color: rgb(211, 211, 211);
         &:focus,
         &:hover {
             border-bottom: 1px solid $error-color;
-            transition: $transition;
+            transition: 0.3s all;
         }
 
         &:hover {
@@ -57,7 +52,7 @@ $input__border-color: rgb(211, 211, 211);
 
     .tinkoff__logo {
         width: fit-content;
-        position: $position__absolute;
+        position: absolute;
         top: 20px;
         right: 20px;
     }
