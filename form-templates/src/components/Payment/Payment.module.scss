@@ -90,6 +90,7 @@ $button__desktop-width: 300px;
 
         .checkbox__label {
             display: flex;
+            flex-direction: row-reverse;
             align-items: center;
             gap: 15px;
             color: $chekbox__label-color;

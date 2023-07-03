@@ -81,7 +81,7 @@ export default function Unipay() {
         name={'Описание'}
         type='text'
         register={register("description", { required: true })}
-        placeholder="что-то о заказе"
+        placeholder="Что-то о заказе"
         errors={errors.description}/>
 
         </div>
