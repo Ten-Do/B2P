@@ -54,7 +54,7 @@ export default function Unipay() {
         <div className={UnipayStyles.input__container}>
         {/* ORDER PRICE INPUT */}
         <Input
-        name={'Введите сумму заказа'}
+        title={'Введите сумму заказа'}
         type='text'
         register={register("amount", { required: true, minLength:1, maxLength: 7 })}
         placeholder="0"
@@ -70,7 +70,7 @@ export default function Unipay() {
 
         {/* EMAIL INPUT */}
         <Input
-        name={'Email'}
+        title={'Email'}
         type='email'
         register={register("email", { required: true })}
         placeholder="example@mail.com"
@@ -78,7 +78,7 @@ export default function Unipay() {
 
         {/* DESCRIPTION INPUT */}
         <Input
-        name={'Описание'}
+        title={'Описание'}
         type='text'
         register={register("description", { required: true })}
         placeholder="Что-то о заказе"

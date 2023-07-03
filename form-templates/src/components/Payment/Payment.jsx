@@ -15,7 +15,7 @@ import PaymentStyles from './Payment.module.scss';
 /* ICONS */
 import TinkoffLogo from '../../assets/tinkoff-logo.svg';
 
-export default function Payment({amount}) {
+export default function Payment({amount, fee}) {
 
     const {
         register,
@@ -48,7 +48,7 @@ export default function Payment({amount}) {
                     <div className={PaymentStyles.number__attribute}>
                     {/* CARD NUMBER INPUT */}
                     <Input
-                    name={'Номер карты'}
+                    title={'Номер карты'}
                     type='number'
                     register={register("number", { required: true, size:16 })}
                     placeholder="1234 5678 1234 5678"
@@ -59,7 +59,7 @@ export default function Payment({amount}) {
                     {/* EXPIRE DATE INPUT */}
                     <div>
                     <Input
-                    name={'Месяц / год'}
+                    title={'Месяц / год'}
                     type='number'
                     register={register("expire", { required: true})}
                     placeholder="ММ / ГГ"
@@ -69,7 +69,7 @@ export default function Payment({amount}) {
                     <div>
                     {/* CVV CODE INPUT */}
                    <Input
-                    name={'CVV / CVC'}
+                    title={'CVV / CVC'}
                     type='password'
                     register={register("code", { required: true, size:3 })}
                     placeholder="123"
@@ -83,9 +83,11 @@ export default function Payment({amount}) {
             <div className={PaymentStyles.savecard__block}>
                 <Input
                 className={PaymentStyles.checkbox__label}
-                name={'Сохранить карту для следующих покупок'}
+                title={'Сохранить карту для следующих покупок'}
                 type='checkbox'/>
             </div>
+
+            <p className={PaymentStyles.payment__fee}>Комиссия: {fee ?? 0}₽</p>
 
             <div className={PaymentStyles.payment__agreement}>
             <Button className={PaymentStyles.submit__button} type={'submit'}>Оплатить {amount ?? 0}₽</Button>

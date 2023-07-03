@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Input = ({ className, name, type, register, required, placeholder, errors }) => {
+const Input = ({ className, title, type, register, placeholder, errors }) => {
     return (
       <label className={className ? className : ''}>
-        {name}
+        {title}
         <input type={type} {...register} placeholder={placeholder} />
         {errors && <p>Поле обязательно</p>}
       </label>
