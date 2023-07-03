@@ -8,16 +8,15 @@
   <link rel="stylesheet" type="text/css" media="all" href="notify.css" th:href="@{notify.css}" />
   <link rel="stylesheet" type="text/css" media="all" href="reset.css" th:href="@{reset.css}" />
 </head>
-<!-- ниже нужно передать переменные emoji, где будет лежать эмодзи, и message, где будет лежать сообщение об ошибке или успехшной операции -->
-<!-- узнать что прходит с сервера -->
 
 <body>
   <div class="center">
     <div class="notify center">
-      <span class="notify__emoji" th:text="${status ==  'success' ? 🎉 : 😿}">😿</span>
-      <p class="notify__message" th:text="${status ==  'success' ? 'Оплата прошла успешно' : 'Не удалось оплатить'}">Не удалось оплатить</p>
+      <span class="notify__emoji">🫠</span>
+      <p class="notify__message" th:text="${error.message}">Что-то пошло не так. Повторите позднее.</p>
     </div>
   </div>
+
 
   <!-- Footer -->
   <div class="footer__container">

@@ -70,7 +70,7 @@
   .secure__info {
     color: #A6A6A6;
     padding: 8px;
-    width: 19%;
+    text-align: justify;
   }
 
   .footer__order {

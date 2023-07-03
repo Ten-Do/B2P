@@ -74,7 +74,7 @@ export default function Unipay() {
         </label>
         </div>
 
-        <Button className={UnipayStyles.submit__button} type={'submit'} name={'Создать'}></Button>
+        <Button className={UnipayStyles.submit__button} type={'submit'}>Создать</Button>
       </form>
     );
 }
