@@ -86,10 +86,11 @@ $button__desktop-width: 300px;
 
     .savecard__block {
         @include center__flex;
-        margin-bottom: 40px;
+        margin-bottom: 10px;
 
         .checkbox__label {
             display: flex;
+            flex-direction: row-reverse;
             align-items: center;
             gap: 15px;
             color: $chekbox__label-color;
@@ -102,6 +103,14 @@ $button__desktop-width: 300px;
             }
         }
     }
+}
+
+.payment__fee {
+    margin-bottom: 20px;
+    color: $chekbox__label-color;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -141,7 +150,7 @@ $button__desktop-width: 300px;
         width: 100%;
         max-width: 240px;
         font-size: 11px;
-        padding: 0 5px;
+        padding: 0 12px;
 
         p {
             width: 100%;

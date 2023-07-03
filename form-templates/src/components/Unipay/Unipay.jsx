@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 
 /* COMPONENTS */
 import Button from '../../UI/Button/Button';
+import Input from '../../UI/Input/Input';
 
 
 /* STYLES */
@@ -24,7 +25,7 @@ const AmountValueIcon = ({fillColor}) => (
   </svg>
 );
 
-export default function Unipay() {
+export default function Unipay({toggle}) {
 
     const {
         register,
@@ -51,30 +52,41 @@ export default function Unipay() {
         <h1 className={UnipayStyles.form__title}>Создание заказа</h1>
 
         <div className={UnipayStyles.input__container}>
-        <label>Введите сумму заказа
+        {/* ORDER PRICE INPUT */}
+        <Input
+        title={'Введите сумму заказа'}
+        type='text'
+        register={register("amount", { required: true, minLength:1, maxLength: 7 })}
+        placeholder="0"
+        errors={errors.amount}/>
+
+        {/* CURRENCY ICON */}
         <figure 
         className={UnipayStyles.amount__icon}>
           <AmountValueIcon 
           fillColor={errors.amount ? 'red' : 'rgb(155, 155, 155)'}
           className={UnipayStyles.amount__icon__svg}/>
         </figure>
-        <input className={UnipayStyles.amount__input} type='text' {...register("amount", {required: true, minLength:1, maxLength: 7})} placeholder="0" />
-        {errors.amount && <p>Поле обязательно</p>}
-        </label>
 
-        <label>Email
-        <input type='email' {...register("email", {required: true})} placeholder="example@mail.com" />
-        {errors.email && <p>Поле обязательно</p>}
-        </label>
+        {/* EMAIL INPUT */}
+        <Input
+        title={'Email'}
+        type='email'
+        register={register("email", { required: true })}
+        placeholder="example@mail.com"
+        errors={errors.email}/>
 
-        <label>Описание
-        <input type='text'
-          {...register("description", { required: true})} placeholder="что-то о заказе"/>
-        {errors.description && <p>Поле обязательно</p>}
-        </label>
+        {/* DESCRIPTION INPUT */}
+        <Input
+        title={'Описание'}
+        type='text'
+        register={register("description", { required: true })}
+        placeholder="Что-то о заказе"
+        errors={errors.description}/>
+
         </div>
 
-        <Button className={UnipayStyles.submit__button} type={'submit'}>Создать</Button>
+        <Button className={UnipayStyles.submit__button} type={'submit'} onClick={toggle}>Создать</Button>
       </form>
     );
 }

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 /* COMPONENTS */
 import Footer from '../Footer/Footer';
 import Button from '../../UI/Button/Button';
+import Input from '../../UI/Input/Input';
 
 
 /* STYLES */
@@ -14,12 +15,12 @@ import PaymentStyles from './Payment.module.scss';
 /* ICONS */
 import TinkoffLogo from '../../assets/tinkoff-logo.svg';
 
-export default function Payment({amount}) {
+export default function Payment({amount, fee, toggle}) {
 
     const {
         register,
         handleSubmit,
-        watch,
+        //watch,
         formState: { errors }
         } = useForm({
         defaultValues: {
@@ -32,7 +33,10 @@ export default function Payment({amount}) {
     return(
         <>
         <section className={PaymentStyles.form__container}>
-            <form className={PaymentStyles.card__form} autoComplete='off'>
+            <form className={PaymentStyles.card__form} autoComplete='off'
+                    onSubmit={handleSubmit((data) => {
+                        alert(JSON.stringify(data));
+                      })}>
 
             {/* Tinkoff Card logo */}
             <figure className={PaymentStyles.tinkoff__logo}>
@@ -42,33 +46,51 @@ export default function Payment({amount}) {
 
                 <div className={PaymentStyles.card__attribites}>
                     <div className={PaymentStyles.number__attribute}>
-                    <label>Номер карты</label>
-                    <input type='number' {...register("number", {required: true, size:16})} placeholder="1234 5678 1234 5678"></input>
+                    {/* CARD NUMBER INPUT */}
+                    <Input
+                    title={'Номер карты'}
+                    type='number'
+                    register={register("number", { required: true, size:16 })}
+                    placeholder="1234 5678 1234 5678"
+                    errors={errors.number}/>
                     </div>
 
                     <div className={PaymentStyles.date__attribute}>
+                    {/* EXPIRE DATE INPUT */}
                     <div>
-                    <label>Месяц / год</label>
-                    <input type='number' {...register("expire", {required: true})} placeholder="ММ / ГГ"></input>
+                    <Input
+                    title={'Месяц / год'}
+                    type='number'
+                    register={register("expire", { required: true})}
+                    placeholder="ММ / ГГ"
+                    errors={errors.expire}/>
                     </div>
 
                     <div>
-                    <label>CVV / CVC</label>
-                    <input type='password' {...register("code", {required: true})} placeholder="123"></input>
+                    {/* CVV CODE INPUT */}
+                   <Input
+                    title={'CVV / CVC'}
+                    type='password'
+                    register={register("code", { required: true, size:3 })}
+                    placeholder="123"
+                    errors={errors.code}/>
                     </div>
                     </div>
                 </div>
             </form>
 
+            {/* CHECKBOX INPUT */}
             <div className={PaymentStyles.savecard__block}>
-            <label className={PaymentStyles.checkbox__label}>
-            <input type="checkbox" />
-            Сохранить карту для следующих покупок
-            </label>
+                <Input
+                className={PaymentStyles.checkbox__label}
+                title={'Сохранить карту для следующих покупок'}
+                type='checkbox'/>
             </div>
 
+            <p className={PaymentStyles.payment__fee}>Комиссия: {fee ?? 0}₽</p>
+
             <div className={PaymentStyles.payment__agreement}>
-            <Button className={PaymentStyles.submit__button} type='submit'>Оплатить {amount ?? 0}₽</Button>
+            <Button className={PaymentStyles.submit__button} type={'submit'} onClick={toggle}>Оплатить {amount ?? 0}₽</Button>
             <p className={PaymentStyles.agreement__policy}>Нажимая на кнопку «Перевести», вы соглашаетесь с <b className={PaymentStyles.bold__span}>условиями оферты</b></p>
             </div>
         </section>
