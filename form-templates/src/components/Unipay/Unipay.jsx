@@ -25,7 +25,7 @@ const AmountValueIcon = ({fillColor}) => (
   </svg>
 );
 
-export default function Unipay() {
+export default function Unipay({toggle}) {
 
     const {
         register,
@@ -86,7 +86,7 @@ export default function Unipay() {
 
         </div>
 
-        <Button className={UnipayStyles.submit__button} type={'submit'}>Создать</Button>
+        <Button className={UnipayStyles.submit__button} type={'submit'} onClick={toggle}>Создать</Button>
       </form>
     );
 }

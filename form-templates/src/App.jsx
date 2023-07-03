@@ -1,7 +1,5 @@
 /* REACT DEFAULT SETTINGS */
 import React, {useState} from 'react';
-import ReactDOM from "react-dom";
-import { CSSTransition } from "react-transition-group";
 
 
 /* STYLES */
@@ -13,35 +11,22 @@ import Unipay from './components/Unipay/Unipay';
 import Payment from './components/Payment/Payment';
 
 
-export default function App() {
-  const sections = ["UNIPAY", "PAYMENT"];
-  const [activeSection, setActiveSection] = useState(sections[0]);
+const App = () => {
+  const [currentPage, setCurrentPage] = useState("unipay");
 
-  const setUnipay = () => setActiveSection(sections[0]);
-  const setPayment = () => setActiveSection(sections[1]);
+  const handleTogglePage = () => {
+    setCurrentPage(currentPage === "unipay" ? "payment" : "unipay");
+  };
   
   return (
     <div className='main__container'>
-      <section className='btns-slider__container'>
-      <button onClick={setUnipay}>Unipay</button>
-      <button onClick={setPayment}>Payment</button>
-      </section>
-      <CSSTransition
-        classNames="section"
-        in={activeSection === sections[0]}
-        // timeout={300}
-        unmountOnExit
-      >
-        <Unipay></Unipay>
-      </CSSTransition>
-      <CSSTransition
-        classNames="section"
-        in={activeSection === sections[1]}
-        // timeout={300}
-        unmountOnExit
-      >
-        <Payment></Payment>
-      </CSSTransition>
+      {currentPage === "unipay" ? (
+        <Unipay toggle={handleTogglePage} />
+      ) : (
+        <Payment toggle={handleTogglePage} />
+      )}
     </div>
   );
 }
+
+export default App;

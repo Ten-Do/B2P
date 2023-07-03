@@ -15,12 +15,12 @@ import PaymentStyles from './Payment.module.scss';
 /* ICONS */
 import TinkoffLogo from '../../assets/tinkoff-logo.svg';
 
-export default function Payment({amount, fee}) {
+export default function Payment({amount, fee, toggle}) {
 
     const {
         register,
         handleSubmit,
-        watch,
+        //watch,
         formState: { errors }
         } = useForm({
         defaultValues: {
@@ -90,7 +90,7 @@ export default function Payment({amount, fee}) {
             <p className={PaymentStyles.payment__fee}>Комиссия: {fee ?? 0}₽</p>
 
             <div className={PaymentStyles.payment__agreement}>
-            <Button className={PaymentStyles.submit__button} type={'submit'}>Оплатить {amount ?? 0}₽</Button>
+            <Button className={PaymentStyles.submit__button} type={'submit'} onClick={toggle}>Оплатить {amount ?? 0}₽</Button>
             <p className={PaymentStyles.agreement__policy}>Нажимая на кнопку «Перевести», вы соглашаетесь с <b className={PaymentStyles.bold__span}>условиями оферты</b></p>
             </div>
         </section>
