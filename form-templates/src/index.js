@@ -4,7 +4,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
+//const initial state config 
+//if null - 404, форму unipay не показываем
+//contextProvider
 root.render(
   <React.StrictMode>
     <App />

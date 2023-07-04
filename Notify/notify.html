@@ -14,8 +14,9 @@
 <body>
   <div class="center">
     <div class="notify center">
-      <span class="notify__emoji" th:text="${status ==  'success' ? 🎉 : 😿}">😿</span>
-      <p class="notify__message" th:text="${status ==  'success' ? 'Оплата прошла успешно' : 'Не удалось оплатить'}">Не удалось оплатить</p>
+      <span class="notify__emoji" th:text="${status == 'success' ? 🎉 : 😿}">😿</span>
+      <p class="notify__message" th:text="${status == 'success' ? 'Оплата прошла успешно' : 'Не удалось оплатить'}">Не
+        удалось оплатить</p>
     </div>
   </div>
 

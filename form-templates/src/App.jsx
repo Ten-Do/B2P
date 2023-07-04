@@ -18,6 +18,8 @@ const App = () => {
     setCurrentPage(currentPage === "unipay" ? "payment" : "unipay");
   };
   
+    // кнопка назад в payment
+
   return (
     <div className='main__container'>
       {currentPage === "unipay" ? (
