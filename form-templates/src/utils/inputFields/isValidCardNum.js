@@ -32,3 +32,12 @@ export function isValidCardNum(cardNumber) {
   // If the sum is divisible by 10, the card number is valid
   return sum % 10 === 0;
 }
+
+// const formatCardNumber = (input) => {
+//   // Удаляем все символы, кроме цифр
+//   cardNumber = cardNumber.slice(0, 16);
+//   // Добавляем пробелы после каждых 4 цифр
+//   let formattedCardNumber = cardNumber.replace(/(\d{4})(?=\d)/g, "$1 ");
+
+//   return formattedCardNumber;
+// };

@@ -14,6 +14,9 @@ import PaymentStyles from './Payment.module.scss';
 /* ICONS */
 import TinkoffLogo from '../../assets/tinkoff-logo.svg';
 
+/* UTILS */
+import { isValidCardNum } from '../../utils/inputFields/isValidCardNum';
+
 export default function Payment({amount}) {
 
     const {
@@ -43,18 +46,18 @@ export default function Payment({amount}) {
                 <div className={PaymentStyles.card__attribites}>
                     <div className={PaymentStyles.number__attribute}>
                     <label>Номер карты</label>
-                    <input type='number' {...register("number", {required: true, size:16})} placeholder="1234 5678 1234 5678"></input>
+                    <input type='number' {...register("number", {required: "Поле обязательно", validate: isValidCardNum})} placeholder="1234 5678 1234 5678"></input>
                     </div>
 
                     <div className={PaymentStyles.date__attribute}>
                     <div>
                     <label>Месяц / год</label>
-                    <input type='number' {...register("expire", {required: true})} placeholder="ММ / ГГ"></input>
+                    <input type='number' {...register("expire", {required: "Поле обязательно"})} placeholder="ММ / ГГ"></input>
                     </div>
 
                     <div>
                     <label>CVV / CVC</label>
-                    <input type='password' {...register("code", {required: true})} placeholder="123"></input>
+                    <input type='password' {...register("code", {required: "Поле обязательно"})} placeholder="123"></input>
                     </div>
                     </div>
                 </div>
