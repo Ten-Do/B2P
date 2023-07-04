@@ -15,7 +15,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState("unipay");
 
   const handleTogglePage = () => {
-    setCurrentPage(currentPage === "unipay" ? "payment" : "unipay");
+    setCurrentPage(currentPage => currentPage === "unipay" ? "payment" : "unipay");
   };
   
     // кнопка назад в payment
