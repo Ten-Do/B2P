@@ -3,12 +3,13 @@ import { useForm } from 'react-hook-form'
 
 /* STYLES */
 import PaymentStyles from './Payment.module.scss'
+import '../../UI/Button/CustomButton.scss'
 
 /* ICONS */
-import TinkoffLogo from '../../assets/tinkoff-logo.svg'
+import BankLogo from '../../assets/tinkoff-logo.svg'
 
 /* COMPONENTS */
-import Button from '../../UI/Button/Button'
+import Button from '../../UI/Button/CustomButton'
 import CustomInput from '../../UI/Input/CustomInput'
 import Footer from '../Footer/Footer'
 
@@ -29,6 +30,10 @@ export default function Payment({ amount, fee, toggle }) {
   return (
     <>
       <section className={PaymentStyles.form__container}>
+        <span className={PaymentStyles.previous__arrow} onClick={toggle}>
+          &#10094;
+        </span>
+
         <form
           className={PaymentStyles.card__form}
           autoComplete='off'
@@ -37,10 +42,9 @@ export default function Payment({ amount, fee, toggle }) {
             alert(JSON.stringify(data))
           })}
         >
-          {/* bank logo */}
-          {/* Tinkoff Card logo */}
-          <figure className={PaymentStyles.tinkoff__logo}>
-            <img src={TinkoffLogo} alt='bank__logo' />
+          {/* Bank logo */}
+          <figure className={PaymentStyles.bank__logo}>
+            <img src={BankLogo} alt='bank__logo' />
           </figure>
 
           <div className={PaymentStyles.card__attribites}>
@@ -93,7 +97,7 @@ export default function Payment({ amount, fee, toggle }) {
         <p className={PaymentStyles.payment__fee}>Комиссия: {fee ?? 0}₽</p>
 
         <div className={PaymentStyles.payment__agreement}>
-          <Button className={PaymentStyles.submit__button} type={'submit'} onClick={toggle}>
+          <Button className={PaymentStyles.submit__button} type={'submit'}>
             Оплатить {amount ?? 0}₽
           </Button>
           <p className={PaymentStyles.agreement__policy}>
@@ -103,7 +107,6 @@ export default function Payment({ amount, fee, toggle }) {
         </div>
       </section>
 
-      {/* remove toggle from button submit__button and add it on button previous form */}
       {/* guap pay component button (config - true ? render : not) */}
       {/* если поля валидны, функцией разбиваем всё по красоте и submit'им*/}
       {/* фейковая функция комиссии - когда pan заполнен, отправляем запрос: сигнатура, amount, paysystem/card bin */}

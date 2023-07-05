@@ -3,9 +3,10 @@ import { useForm } from 'react-hook-form'
 
 /* STYLES */
 import UnipayStyles from './Unipay.module.scss'
+import '../../UI/Button/CustomButton.scss'
 
 /* COMPONENTS */
-import Button from '../../UI/Button/Button'
+import Button from '../../UI/Button/CustomButton'
 import CustomInput from '../../UI/Input/CustomInput'
 
 /* ICONS */

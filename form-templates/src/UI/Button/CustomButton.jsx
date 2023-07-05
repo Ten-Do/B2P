@@ -1,8 +1,9 @@
 import React from 'react'
+import './CustomButton.scss'
 
 //props isloading + button disabled
 
-const Button = ({ className, type, children, onClick }) => {
+const CustomButton = ({ className, type = 'submit', children, onClick }) => {
   return (
     <button className={className} type={type} onClick={onClick}>
       {children}
@@ -10,4 +11,4 @@ const Button = ({ className, type, children, onClick }) => {
   )
 }
 
-export default Button
+export default CustomButton

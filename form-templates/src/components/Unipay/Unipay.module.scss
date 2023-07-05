@@ -1,26 +1,28 @@
-@use '../../styles/vars'with ($form-minheight: 518px,
-    $width: 100%,
-    $form-maxwidth: 412px,
-    $form-margin: 5vh auto,
-    $form-padding: 48px 56px);
+@use '../../styles/vars' with (
+  $form-minheight: 518px,
+  $width: 100%,
+  $form-maxwidth: 412px,
+  $form-margin: 5vh auto,
+  $form-padding: 48px 56px
+);
 
 @import '../../styles/vars.scss';
 
 // GENERAL
-$error-color: #FF3B30;
+$error-color: #ff3b30;
 $placeholder-color: rgb(223, 223, 223);
-$white-color: #FFF;
+$white-color: #fff;
 $reset-style: none;
 
 // LABEL
-$label__font-weight: 400;
-$label-color: rgb(155, 155, 155);
+// $label__font-weight: 400;
+// $label-color: rgb(155, 155, 155);
 
 // INPUT
-$input__maxwidth: 300px;
-$input__minheight: 30px;
-$input__margin-bottom: 40px;
-$input__border-color: rgb(211, 211, 211);
+// $input__maxwidth: 300px;
+// $input__minheight: 30px;
+// $input__margin-bottom: 40px;
+// $input__border-color: rgb(211, 211, 211);
 
 // H1
 $h1-color: rgb(88, 88, 88);
@@ -29,9 +31,9 @@ $h1-size: 26px;
 $h1__margin-bottom: 30px;
 
 // BUTTON
-$button__background: #FF335F;
-$button__background-hover: #FF446D;
-$button__background-active: #E1264F;
+$button__background: #ff335f;
+$button__background-hover: #ff446d;
+$button__background-active: #e1264f;
 $button__font-weight: 500;
 $button__font-size: 20px;
 $button__padding: 20px;
@@ -39,107 +41,106 @@ $button__border-radius: 35px;
 $button__desktop-width: 300px;
 
 .unipay__form {
-    padding: $form-padding;
-    width: $width;
-    max-width: $form-maxwidth;
-    min-height: $form-minheight;
-    margin: $form-margin;
-    @include form__appearance;
+  padding: $form-padding;
+  width: $width;
+  max-width: $form-maxwidth;
+  min-height: $form-minheight;
+  margin: $form-margin;
+  @include form__appearance;
 
-    input:active {
-        border-bottom: 1px solid $error-color;
-    }
+  input:active {
+    border-bottom: 1px solid $error-color;
+  }
 
-    .input__container {
-        position: relative;
-        display: grid;
-        grid-template-rows: repeat(3, 1fr);
-        row-gap: 30px;
+  .input__container {
+    position: relative;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 30px;
 
-        margin-bottom: 50px;
-    }
+    margin-bottom: 50px;
+  }
 }
 
 h1 {
-    font-weight: $h1-weight;
-    font-size: $h1-size;
-    color: $h1-color;
-    margin-bottom: $h1__margin-bottom;
+  font-weight: $h1-weight;
+  font-size: $h1-size;
+  color: $h1-color;
+  margin-bottom: $h1__margin-bottom;
 }
 
 p {
-    color: $error-color;
+  color: $error-color;
 }
 
 p::before {
-    display: inline;
+  display: inline;
 }
 
-input {
-    box-sizing: border-box;
-    width: $width;
-    max-width: $input__maxwidth;
-    min-height: $input__minheight;
-    border-bottom: 1px solid $input__border-color;
-    padding: 10px 0;
+// input {
+//   box-sizing: border-box;
+//   width: $width;
+//   max-width: $input__maxwidth;
+//   min-height: $input__minheight;
+//   border-bottom: 1px solid $input__border-color;
+//   padding: 10px 0;
 
-    &::placeholder {
-        color: $placeholder-color;
-    }
+//   &::placeholder {
+//     color: $placeholder-color;
+//   }
 
-    // &:not(:placeholder-shown) {
-    //     border-bottom: 1px solid $input__border-color;
-    // }
+//   // &:not(:placeholder-shown) {
+//   //     border-bottom: 1px solid $input__border-color;
+//   // }
 
-    &:active,
-    &:focus,
-    &:hover {
-        border-bottom: 1px solid $error-color;
-        transition: 0.3s all;
-    }
+//   &:active,
+//   &:focus,
+//   &:hover {
+//     border-bottom: 1px solid $error-color;
+//     transition: 0.3s all;
+//   }
 
-    &:hover {
-        cursor: pointer;
-    }
-}
+//   &:hover {
+//     cursor: pointer;
+//   }
+// }
 
 .amount__icon {
-    position: absolute;
-    top: 30px;
-    left: 300px;
+  position: absolute;
+  top: 30px;
+  left: 300px;
 }
 
+// label {
+//   text-align: left;
+//   color: $label-color;
+//   font-weight: $label__font-weight;
 
-label {
-    text-align: left;
-    color: $label-color;
-    font-weight: $label__font-weight;
-
-    &:hover {
-        cursor: pointer;
-    }
-}
+//   &:hover {
+//     cursor: pointer;
+//   }
+// }
 
 .submit__button {
-    background: $button__background;
-    border-radius: $button__border-radius;
-    color: $white-color;
-    padding: $button__padding;
-    font-size: $button__font-size;
-    font-weight: $button__font-weight;
-    width: $width;
-    max-width: $button__desktop-width;
+  background: $button__background;
+  border-radius: $button__border-radius;
+  color: $white-color;
+  padding: $button__padding;
+  font-size: $button__font-size;
+  font-weight: $button__font-weight;
+  width: $width;
+  max-width: $button__desktop-width;
 
-    &:hover {
-        background: $button__background-hover;
-        cursor: pointer;
-        transition: 0.3s all;
-        box-shadow: 0px 1px 20px -5px $button__background;
-    }
+  &:hover {
+    background: $button__background-hover;
+    cursor: pointer;
+    transition: 0.3s all;
+    box-shadow: 0px 1px 20px -5px $button__background;
+  }
 
-    &:active {
-        transition: 0.3s all;
-        background: $button__background-active;
-        box-shadow: $reset-style;
-    }
+  &:active {
+    transition: 0.3s all;
+    background: $button__background-active;
+    box-shadow: $reset-style;
+  }
 }

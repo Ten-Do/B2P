@@ -1,4 +1,5 @@
 import React from 'react'
+import './CustomInput.scss'
 
 //styles scss
 
