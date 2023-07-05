@@ -30,16 +30,6 @@ $h1-weight: 700;
 $h1-size: 26px;
 $h1__margin-bottom: 30px;
 
-// BUTTON
-$button__background: #ff335f;
-$button__background-hover: #ff446d;
-$button__background-active: #e1264f;
-$button__font-weight: 500;
-$button__font-size: 20px;
-$button__padding: 20px;
-$button__border-radius: 35px;
-$button__desktop-width: 300px;
-
 .unipay__form {
   padding: $form-padding;
   width: $width;
@@ -120,27 +110,3 @@ p::before {
 //     cursor: pointer;
 //   }
 // }
-
-.submit__button {
-  background: $button__background;
-  border-radius: $button__border-radius;
-  color: $white-color;
-  padding: $button__padding;
-  font-size: $button__font-size;
-  font-weight: $button__font-weight;
-  width: $width;
-  max-width: $button__desktop-width;
-
-  &:hover {
-    background: $button__background-hover;
-    cursor: pointer;
-    transition: 0.3s all;
-    box-shadow: 0px 1px 20px -5px $button__background;
-  }
-
-  &:active {
-    transition: 0.3s all;
-    background: $button__background-active;
-    box-shadow: $reset-style;
-  }
-}

@@ -1,12 +1,14 @@
+import cn from 'classnames'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 
 /* STYLES */
 import UnipayStyles from './Unipay.module.scss'
-import '../../UI/Button/CustomButton.scss'
+
+import Button from '../../UI/Button/CustomButton'
+import CustomButtonStyles from '../../UI/Button/CustomButton.module.scss'
 
 /* COMPONENTS */
-import Button from '../../UI/Button/CustomButton'
 import CustomInput from '../../UI/Input/CustomInput'
 
 /* ICONS */
@@ -19,6 +21,8 @@ const AmountValueIcon = ({ fillColor }) => (
     />
   </svg>
 )
+
+let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
 
 export default function Unipay({ toggle }) {
   const {
@@ -82,7 +86,7 @@ export default function Unipay({ toggle }) {
         />
       </div>
 
-      <Button className={UnipayStyles.submit__button} type='submit'>
+      <Button className={ButtonSubmitEnabled} type='submit'>
         Создать
       </Button>
     </form>

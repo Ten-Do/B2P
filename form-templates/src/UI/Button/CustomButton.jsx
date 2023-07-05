@@ -1,5 +1,4 @@
 import React from 'react'
-import './CustomButton.scss'
 
 //props isloading + button disabled
 

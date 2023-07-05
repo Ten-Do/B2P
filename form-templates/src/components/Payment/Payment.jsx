@@ -1,17 +1,25 @@
+import cn from 'classnames'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 
 /* STYLES */
 import PaymentStyles from './Payment.module.scss'
-import '../../UI/Button/CustomButton.scss'
 
 /* ICONS */
 import BankLogo from '../../assets/tinkoff-logo.svg'
 
 /* COMPONENTS */
 import Button from '../../UI/Button/CustomButton'
+import CustomButtonStyles from '../../UI/Button/CustomButton.module.scss'
 import CustomInput from '../../UI/Input/CustomInput'
 import Footer from '../Footer/Footer'
+
+let ButtonSubmitDisabled = cn([
+  `${CustomButtonStyles.submit__button}`,
+  ` ${CustomButtonStyles.submit__button__disabled}`,
+])
+
+let SuaiPayButton = cn([`${CustomButtonStyles.submit__button}`, `${CustomButtonStyles.SuaiPay__button}`])
 
 export default function Payment({ amount, fee, toggle }) {
   const {
@@ -97,9 +105,15 @@ export default function Payment({ amount, fee, toggle }) {
         <p className={PaymentStyles.payment__fee}>Комиссия: {fee ?? 0}₽</p>
 
         <div className={PaymentStyles.payment__agreement}>
-          <Button className={PaymentStyles.submit__button} type={'submit'}>
-            Оплатить {amount ?? 0}₽
-          </Button>
+          <div className={PaymentStyles.buttons__container}>
+            <Button className={ButtonSubmitDisabled} type={'submit'}>
+              Оплатить {amount ?? 0}₽
+            </Button>
+
+            <Button className={SuaiPayButton} type={'submit'}>
+              SUAI PAY
+            </Button>
+          </div>
           <p className={PaymentStyles.agreement__policy}>
             Нажимая на кнопку «Перевести», вы соглашаетесь с{' '}
             <b className={PaymentStyles.bold__span}>условиями оферты</b>
