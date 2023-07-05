@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import PaymentStyles from './Payment.module.scss'
 
 /* ICONS */
+import CodeInfo from '../../assets/ic_ques.svg'
 import BankLogo from '../../assets/tinkoff-logo.svg'
 
 /* COMPONENTS */
@@ -89,6 +90,11 @@ export default function Payment({ amount, fee, toggle }) {
                   errors={errors.code}
                 />
               </div>
+
+              {/* CVV CODE INFO SIGN */}
+              <figure className={PaymentStyles.cvv__info}>
+                <img src={CodeInfo} alt='code info'></img>
+              </figure>
             </div>
           </div>
         </form>
