@@ -1,0 +1,27 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1469_2891)">
+<rect x="6" y="7" width="28" height="26.04" fill="#3EA3E2"/>
+<g filter="url(#filter0_f_1469_2891)">
+<rect x="6" y="3.07996" width="27.44" height="28.28" fill="url(#paint0_radial_1469_2891)"/>
+</g>
+<path d="M9.08008 15.6801H12.3884L13.1465 20.0911L14.0425 15.6801H17.3509V24.6401H15.1453V18.0234L13.9047 24.6401H12.3884L11.2856 18.0234V24.6401H9.08008V15.6801Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M18.6001 15.6801H22.4598V17.1964H20.6678V18.9884H21.9084C23.2026 18.9884 24.2518 20.0375 24.2518 21.3317V22.2967C24.2518 23.5909 23.2026 24.6401 21.9084 24.6401H18.6001V15.6801ZM20.8056 20.6425H21.0813C21.6142 20.6425 22.0463 21.0745 22.0463 21.6074V22.021C22.0463 22.5539 21.6142 22.9859 21.0813 22.9859H20.8056V20.6425Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M25.3201 15.6801H29.1798V17.1964H27.3878V18.9884H28.6284C29.9226 18.9884 30.9718 20.0375 30.9718 21.3317V22.2967C30.9718 23.5909 29.9226 24.6401 28.6284 24.6401H25.3201V15.6801ZM27.5256 20.6425H27.8013C28.3342 20.6425 28.7662 21.0745 28.7662 21.6074V22.021C28.7662 22.5539 28.3342 22.9859 27.8013 22.9859H27.5256V20.6425Z" fill="white"/>
+</g>
+<defs>
+<filter id="filter0_f_1469_2891" x="-3" y="-5.92004" width="45.4399" height="46.28" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="4.5" result="effect1_foregroundBlur_1469_2891"/>
+</filter>
+<radialGradient id="paint0_radial_1469_2891" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(19.72 17.22) rotate(90) scale(14.14 13.72)">
+<stop stop-color="#2C7DDE"/>
+<stop offset="0.869792" stop-color="#1D4394"/>
+<stop offset="0.958333" stop-color="#10285B"/>
+<stop offset="1" stop-color="#3EA3E2"/>
+</radialGradient>
+<clipPath id="clip0_1469_2891">
+<rect x="6" y="7" width="28" height="26.04" rx="8" fill="white"/>
+</clipPath>
+</defs>
+</svg>
