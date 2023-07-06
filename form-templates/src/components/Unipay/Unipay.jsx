@@ -54,11 +54,13 @@ export default function Unipay({ toggle }) {
         <CustomInput
           title={'Введите сумму заказа'}
           type='text'
-          register={register('amount', { required: true, minLength: 1, maxLength: 7 })}
+          register={register('amount', { required: true, minLength: 1, maxLength: 7, pattern: /^[0-9.,]+$/ })}
           placeholder='0'
           errors={errors.amount}
           text={'Поле обязательно'}
         />
+        {errors.amount?.type === 'required' && <p>Введите сумму заказа</p>}
+        {errors.amount?.type === 'pattern' && <p>Введите только положительное число</p>}
 
         {/* CURRENCY ICON */}
         <figure className={UnipayStyles.amount__icon}>
