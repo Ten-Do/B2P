@@ -68,11 +68,13 @@ export default function Payment({ amount, fee, toggle }) {
               <CustomInput
                 title={'Номер карты'}
                 type='number'
-                register={register('number', { required: true, size: 16 })}
+                register={register('number', { required: true, minLength: 16, maxLength: 16 })}
                 placeholder='1234 5678 1234 5678'
                 errors={errors.number}
                 text={'Поле обязательно'}
               />
+              {errors.number?.type === 'minLength' && <p>Не менее 16 символов</p>}
+              {errors.number?.type === 'maxLength' && <p>Не более 16 символов</p>}
             </div>
 
             <div className={PaymentStyles.date__attribute}>
