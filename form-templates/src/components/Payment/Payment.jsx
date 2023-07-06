@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import cn from 'classnames'
 import React from 'react'
 import { useForm } from 'react-hook-form'
@@ -8,6 +9,13 @@ import PaymentStyles from './Payment.module.scss'
 /* ICONS */
 import CodeInfo from '../../assets/ic_ques.svg'
 import BankLogo from '../../assets/tinkoff-logo.svg'
+
+/* UTILS */
+import { formatCardNumber } from '../../utils/formFields/formatCardNum'
+import { formatCVC } from '../../utils/formFields/formatCVC'
+import { formatDate } from '../../utils/formFields/formatDate'
+import { isValidCardNum } from '../../utils/formFields/isValidCardNum'
+import { isValidDate } from '../../utils/formFields/isValidDate'
 
 /* COMPONENTS */
 import Button from '../../UI/Button/CustomButton'
@@ -29,6 +37,7 @@ export default function Payment({ amount, fee, toggle }) {
     //watch,
     formState: { errors },
   } = useForm({
+    mode: 'onBlur',
     defaultValues: {
       number: '',
       expire: '',
@@ -61,8 +70,8 @@ export default function Payment({ amount, fee, toggle }) {
               {/* CARD NUMBER INPUT */}
               <CustomInput
                 title={'Номер карты'}
-                type='number'
-                register={register('number', { required: true, size: 16 })}
+                format={formatCardNumber}
+                register={register('number', { required: 'Поле обязательно', validate: isValidCardNum })}
                 placeholder='1234 5678 1234 5678'
                 errors={errors.number}
               />
@@ -73,8 +82,11 @@ export default function Payment({ amount, fee, toggle }) {
               <div>
                 <CustomInput
                   title={'Месяц / год'}
-                  type='number'
-                  register={register('expire', { required: true })}
+                  format={formatDate}
+                  register={register('expire', {
+                    required: 'Поле обязательно',
+                    validate: isValidDate,
+                  })}
                   placeholder='ММ / ГГ'
                   errors={errors.expire}
                 />
@@ -85,7 +97,11 @@ export default function Payment({ amount, fee, toggle }) {
                 <CustomInput
                   title={'CVV / CVC'}
                   type='password'
-                  register={register('code', { required: true, size: 3 })}
+                  format={formatCVC}
+                  register={register('code', {
+                    required: 'Поле обязательно',
+                    pattern: { value: /^(\d{3})$/g, message: 'Код должен состоять из трех цифр' },
+                  })}
                   placeholder='123'
                   errors={errors.code}
                 />
