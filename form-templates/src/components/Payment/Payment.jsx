@@ -20,6 +20,8 @@ let ButtonSubmitDisabled = cn([
   ` ${CustomButtonStyles.submit__button__disabled}`,
 ])
 
+let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
+
 let SuaiPayButton = cn([`${CustomButtonStyles.submit__button}`, `${CustomButtonStyles.SuaiPay__button}`])
 
 export default function Payment({ amount, fee, toggle }) {
@@ -35,6 +37,10 @@ export default function Payment({ amount, fee, toggle }) {
       code: '',
     },
   })
+
+  const isFormEmpty = Object.keys(errors).length === 0
+
+  //console.log(Object.keys(errors).length)
 
   return (
     <>
@@ -119,7 +125,11 @@ export default function Payment({ amount, fee, toggle }) {
 
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
-            <Button className={ButtonSubmitDisabled} type={'submit'} onClick={handleSubmit()}>
+            <Button
+              className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
+              type={'submit'}
+              onClick={handleSubmit()}
+            >
               Оплатить {amount ?? 0}₽
             </Button>
 

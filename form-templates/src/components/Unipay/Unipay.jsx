@@ -24,6 +24,11 @@ const AmountValueIcon = ({ fillColor }) => (
 
 let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
 
+let ButtonSubmitDisabled = cn([
+  `${CustomButtonStyles.submit__button}`,
+  ` ${CustomButtonStyles.submit__button__disabled}`,
+])
+
 export default function Unipay({ toggle }) {
   const {
     register,
@@ -38,6 +43,8 @@ export default function Unipay({ toggle }) {
       description: '',
     },
   })
+
+  const isFormEmpty = Object.keys(errors).length === 0
 
   return (
     <form
@@ -90,7 +97,10 @@ export default function Unipay({ toggle }) {
         />
       </div>
 
-      <Button className={ButtonSubmitEnabled} type='submit'>
+      <Button
+        className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
+        type='submit'
+      >
         Создать
       </Button>
     </form>
