@@ -3,9 +3,9 @@
  * @returns {Boolean | String}
  * True if value look like valid card number and error message if not.
  */
-export function isValidCardNum(cardNumber) {
+export const isValidCardNum = (cardNumber) => {
   // accept only digits, dashes or spaces
-  if (/[^0-9-\s]+/.test(value)) return 'Номер карты может состоять только из цифр'
+  if (/[^0-9-\s]+/.test(cardNumber)) return 'Номер карты может состоять только из цифр'
 
   /* The Luhn Algorithm. */
   // Remove any non-digit characters from the card number
