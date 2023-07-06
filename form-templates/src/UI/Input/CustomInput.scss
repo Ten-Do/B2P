@@ -1,0 +1,55 @@
+@use '../../styles/vars' with (
+  $width: 100%
+);
+
+@import '../../styles/vars.scss';
+
+// INPUT
+$input__maxwidth: 300px;
+$input__minheight: 30px;
+$input__margin-bottom: 20px;
+$input__border-color: rgb(211, 211, 211);
+$chekbox__label-color: #595959;
+$chekbox__checked-color: #ff335f;
+$placeholder-color: rgb(223, 223, 223);
+$error-color: #ff3b30;
+$cursor__pointer: pointer;
+
+// LABEL
+$label__font-weight: 400;
+$label-color: rgb(155, 155, 155);
+
+label {
+    text-align: left;
+    color: $label-color;
+    font-weight: $label__font-weight;
+  
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+input {
+  box-sizing: border-box;
+  width: $width;
+  max-width: $input__maxwidth;
+  min-height: $input__minheight;
+  margin-bottom: $input__margin-bottom;
+  border-bottom: 1px solid $input__border-color;
+  padding: 10px 0;
+
+  &::placeholder {
+    color: $placeholder-color;
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    border-bottom: 1px solid $error-color;
+    transition: 0.3s all;
+  }
+
+  &:hover {
+    cursor: $cursor__pointer;
+  }
+}
