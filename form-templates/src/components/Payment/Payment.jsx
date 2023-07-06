@@ -13,7 +13,11 @@ import BankLogo from '../../assets/tinkoff-logo.svg'
 import Button from '../../UI/Button/CustomButton'
 import CustomButtonStyles from '../../UI/Button/CustomButton.module.scss'
 import CustomInput from '../../UI/Input/CustomInput'
+/* JSON */
+import BanksData from '../../utils/paymentData.json'
 import Footer from '../Footer/Footer'
+
+console.log(BanksData)
 
 let ButtonSubmitDisabled = cn([
   `${CustomButtonStyles.submit__button}`,
