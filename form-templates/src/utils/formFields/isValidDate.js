@@ -8,7 +8,7 @@ export const isValidDate = (value) => {
   const currentYear = currentDate.getFullYear() % 100
   const currentMonth = currentDate.getMonth() + 1
 
-  const [inputMonth = -1, inputYear = -1] = value.split(' / ').map(parseInt)
+  const [inputMonth = -1, inputYear = -1] = value.split(' / ').map((e) => +e)
 
   if (inputMonth > 12 || inputMonth < 1) return 'Месяц введен неверно'
   else if (inputYear < currentYear || (inputMonth < currentMonth && inputYear === currentYear))
