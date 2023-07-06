@@ -34,7 +34,7 @@ export default function Unipay({ toggle }) {
     register,
     handleSubmit,
     // watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
@@ -44,7 +44,8 @@ export default function Unipay({ toggle }) {
     },
   })
 
-  const isFormEmpty = Object.keys(errors).length === 0
+  //const isFormEmpty = Object.keys(errors).length === 0
+  const isFormValid = isValid
 
   return (
     <form
@@ -97,10 +98,7 @@ export default function Unipay({ toggle }) {
         />
       </div>
 
-      <Button
-        className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
-        type='submit'
-      >
+      <Button className={isFormValid ? ButtonSubmitEnabled : ButtonSubmitDisabled} type='submit'>
         Создать
       </Button>
     </form>

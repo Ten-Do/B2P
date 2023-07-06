@@ -29,7 +29,7 @@ export default function Payment({ amount, fee, toggle }) {
     register,
     handleSubmit,
     //watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: {
       number: '',
@@ -38,8 +38,8 @@ export default function Payment({ amount, fee, toggle }) {
     },
   })
 
-  const isFormEmpty = Object.keys(errors).length === 0
-
+  //const isFormEmpty = Object.keys(errors).length === 0
+  const isFormValid = isValid
   //console.log(Object.keys(errors).length)
 
   return (
@@ -126,7 +126,8 @@ export default function Payment({ amount, fee, toggle }) {
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
             <Button
-              className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
+              // className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
+              className={isFormValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
               type={'submit'}
               onClick={handleSubmit()}
             >
