@@ -59,8 +59,7 @@ export default function Unipay({ toggle }) {
           errors={errors.amount}
           text={'Поле обязательно'}
         />
-        {errors.amount?.type === 'required' && <p>Введите сумму заказа</p>}
-        {errors.amount?.type === 'pattern' && <p>Введите только положительное число</p>}
+        {errors.amount?.type === 'pattern' && <p>Только положительные числа</p>}
 
         {/* CURRENCY ICON */}
         <figure className={UnipayStyles.amount__icon}>

@@ -47,9 +47,9 @@ export default function Payment({ amount, fee, toggle }) {
           className={PaymentStyles.card__form}
           autoComplete='off'
           action='/'
-          onSubmit={handleSubmit((data) => {
-            alert(JSON.stringify(data))
-          })}
+          // onSubmit={handleSubmit((data) => {
+          //   alert(JSON.stringify(data))
+          // })}
         >
           {/* Bank logo */}
           <figure className={PaymentStyles.bank__logo}>
@@ -75,11 +75,13 @@ export default function Payment({ amount, fee, toggle }) {
                 <CustomInput
                   title={'Месяц / год'}
                   type='number'
-                  register={register('expire', { required: true })}
+                  register={register('expire', { required: true, maxLength: 4, pattern: /^[0-9]+$/ })}
                   placeholder='ММ / ГГ'
                   errors={errors.expire}
                   text={'Поле обязательно'}
                 />
+                {errors.expire?.type === 'maxLength' && <p>Не более четырех символов</p>}
+                {errors.expire?.type === 'pattern' && <p>Только числа</p>}
               </div>
 
               <div>
@@ -87,11 +89,13 @@ export default function Payment({ amount, fee, toggle }) {
                 <CustomInput
                   title={'CVV / CVC'}
                   type='password'
-                  register={register('code', { required: true, size: 3 })}
+                  register={register('code', { required: true, maxLength: 3, pattern: /^[0-9]+$/ })}
                   placeholder='123'
                   errors={errors.code}
                   text={'Поле обязательно'}
                 />
+                {errors.code?.type === 'maxLength' && <p>Не более трех символов</p>}
+                {errors.code?.type === 'pattern' && <p>Только числа</p>}
               </div>
 
               {/* CVV CODE INFO SIGN */}
@@ -115,11 +119,11 @@ export default function Payment({ amount, fee, toggle }) {
 
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
-            <Button className={ButtonSubmitDisabled} type={'submit'}>
+            <Button className={ButtonSubmitDisabled} type={'submit'} onClick={handleSubmit()}>
               Оплатить {amount ?? 0}₽
             </Button>
 
-            <Button className={SuaiPayButton} type={'submit'}>
+            <Button className={SuaiPayButton} type={'button'}>
               SUAI PAY
             </Button>
           </div>
