@@ -57,6 +57,7 @@ export default function Unipay({ toggle }) {
           register={register('amount', { required: true, minLength: 1, maxLength: 7 })}
           placeholder='0'
           errors={errors.amount}
+          text={'Поле обязательно'}
         />
 
         {/* CURRENCY ICON */}
@@ -74,6 +75,7 @@ export default function Unipay({ toggle }) {
           register={register('email', { required: true })}
           placeholder='example@mail.com'
           errors={errors.email}
+          text={'Поле обязательно'}
         />
 
         {/* DESCRIPTION INPUT */}
@@ -83,6 +85,7 @@ export default function Unipay({ toggle }) {
           register={register('description', { required: true })}
           placeholder='Что-то о заказе'
           errors={errors.description}
+          text={'Поле обязательно'}
         />
       </div>
 

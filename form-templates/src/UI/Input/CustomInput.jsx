@@ -1,14 +1,12 @@
 import React from 'react'
 import './CustomInput.scss'
 
-//styles scss
-
-const CustomInput = ({ register, title, errors, className = '', type = 'text', placeholder = '' }) => {
+const CustomInput = ({ register, title, errors, text, className = '', type = 'text', placeholder = '' }) => {
   return (
     <label className={className ? className : ''}>
       {title}
       <input type={type} {...register} placeholder={placeholder} />
-      {errors && <p>{errors.message}</p>}
+      {errors && <p>{text}</p>}
     </label>
   )
 }

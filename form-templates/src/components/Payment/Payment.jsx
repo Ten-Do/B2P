@@ -65,6 +65,7 @@ export default function Payment({ amount, fee, toggle }) {
                 register={register('number', { required: true, size: 16 })}
                 placeholder='1234 5678 1234 5678'
                 errors={errors.number}
+                text={'Поле обязательно'}
               />
             </div>
 
@@ -77,6 +78,7 @@ export default function Payment({ amount, fee, toggle }) {
                   register={register('expire', { required: true })}
                   placeholder='ММ / ГГ'
                   errors={errors.expire}
+                  text={'Поле обязательно'}
                 />
               </div>
 
@@ -88,6 +90,7 @@ export default function Payment({ amount, fee, toggle }) {
                   register={register('code', { required: true, size: 3 })}
                   placeholder='123'
                   errors={errors.code}
+                  text={'Поле обязательно'}
                 />
               </div>
 
