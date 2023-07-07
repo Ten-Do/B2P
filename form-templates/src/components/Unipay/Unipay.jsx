@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 
 /* STYLES */
 import UnipayStyles from './Unipay.module.scss'
@@ -27,26 +27,11 @@ let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${Custom
 export default function Unipay({ toggle }) {
   const {
     register,
-    handleSubmit,
-    // watch,
     formState: { errors },
-  } = useForm({
-    mode: 'onBlur',
-    defaultValues: {
-      amount: '',
-      email: '',
-      description: '',
-    },
-  })
+  } = useFormContext()
 
   return (
-    <form
-      className={UnipayStyles.unipay__form}
-      autoComplete='off'
-      onSubmit={handleSubmit((data) => {
-        toggle()
-      })}
-    >
+    <div className={UnipayStyles.unipay__form}>
       <h1 className={UnipayStyles.form__title}>Создание заказа</h1>
 
       <div className={UnipayStyles.input__container}>
@@ -86,9 +71,9 @@ export default function Unipay({ toggle }) {
         />
       </div>
 
-      <Button className={ButtonSubmitEnabled} type='submit'>
+      <Button className={ButtonSubmitEnabled} onClick={toggle}>
         Создать
       </Button>
-    </form>
+    </div>
   )
 }

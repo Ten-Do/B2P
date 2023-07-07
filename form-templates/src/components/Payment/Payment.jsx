@@ -1,7 +1,7 @@
 /* eslint-disable import/order */
 import cn from 'classnames'
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 
 /* STYLES */
 import PaymentStyles from './Payment.module.scss'
@@ -30,20 +30,13 @@ let ButtonSubmitDisabled = cn([
 
 let SuaiPayButton = cn([`${CustomButtonStyles.submit__button}`, `${CustomButtonStyles.SuaiPay__button}`])
 
-export default function Payment({ amount, fee, toggle }) {
+export default function Payment({ fee, toggle }) {
   const {
     register,
     handleSubmit,
-    //watch,
+    watch,
     formState: { errors },
-  } = useForm({
-    mode: 'onBlur',
-    defaultValues: {
-      number: '',
-      expire: '',
-      code: '',
-    },
-  })
+  } = useFormContext()
 
   return (
     <>
@@ -52,10 +45,8 @@ export default function Payment({ amount, fee, toggle }) {
           &#10094;
         </span>
 
-        <form
+        <div
           className={PaymentStyles.card__form}
-          autoComplete='off'
-          action='/'
           onSubmit={handleSubmit((data) => {
             alert(JSON.stringify(data))
           })}
@@ -113,7 +104,7 @@ export default function Payment({ amount, fee, toggle }) {
               </figure>
             </div>
           </div>
-        </form>
+        </div>
 
         {/* CHECKBOX INPUT */}
         <div className={PaymentStyles.savecard__block}>
@@ -129,12 +120,10 @@ export default function Payment({ amount, fee, toggle }) {
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
             <Button className={ButtonSubmitDisabled} type={'submit'}>
-              Оплатить {amount ?? 0}₽
+              Оплатить {watch('amount') ?? 0}₽
             </Button>
 
-            <Button className={SuaiPayButton} type={'submit'}>
-              SUAI PAY
-            </Button>
+            <Button className={SuaiPayButton}>SUAI PAY</Button>
           </div>
           <p className={PaymentStyles.agreement__policy}>
             Нажимая на кнопку «Перевести», вы соглашаетесь с{' '}

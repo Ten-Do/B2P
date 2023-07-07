@@ -1,5 +1,6 @@
 /* REACT DEFAULT SETTINGS */
 import React, { useState } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 
 /* STYLES */
 import './styles/App.scss'
@@ -10,17 +11,30 @@ import Unipay from './components/Unipay/Unipay'
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('unipay')
+  const formMethods = useForm({
+    mode: 'onBlur',
+    defaultValues: {
+      amount: '',
+      email: '',
+      description: '',
+      number: '',
+      expire: '',
+      code: '',
+    },
+  })
 
   const handleTogglePage = () => {
     setCurrentPage((currentPage) => (currentPage === 'unipay' ? 'payment' : 'unipay'))
   }
 
-  // кнопка назад в payment
-
   return (
-    <div className='main__container'>
-      {currentPage === 'unipay' ? <Unipay toggle={handleTogglePage} /> : <Payment toggle={handleTogglePage} />}
-    </div>
+    <FormProvider {...formMethods}>
+      <div className='main__container'>
+        <form autoComplete='off' onSubmit={formMethods.handleSubmit((data) => console.log(data))}>
+          {currentPage === 'unipay' ? <Unipay toggle={handleTogglePage} /> : <Payment toggle={handleTogglePage} />}
+        </form>
+      </div>
+    </FormProvider>
   )
 }
 
