@@ -6,6 +6,6 @@
  * <input onChange={formatDate} ... />
  * @param {EventListenerObject} event
  */
-export const formatCVC = (event) => {
-  event.target.value = event.target.value.slice(0, 3).replace(/\D/g, '')
+export const formatCVC = ({ target }) => {
+  target.value = target.value.replace(/\D/g, '').slice(0, 3)
 }
