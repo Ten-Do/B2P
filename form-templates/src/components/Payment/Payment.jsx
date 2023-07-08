@@ -71,10 +71,13 @@ export default function Payment({ fee, toggle }) {
               <CustomInput
                 title={'Номер карты'}
                 format={formatCardNumber}
-                register={register('number', { required: 'true', validate: isValidCardNum })}
+                register={register('number', {
+                  required: 'true',
+                  message: 'Поле обязательно',
+                  validate: isValidCardNum,
+                })}
                 placeholder='1234 5678 1234 5678'
                 errors={errors.number}
-                text={'Поле обязательно'}
               />
             </div>
 
@@ -85,15 +88,12 @@ export default function Payment({ fee, toggle }) {
                   title={'Месяц / год'}
                   format={formatDate}
                   register={register('expire', {
-                    required: true,
+                    required: 'Поле обязательно',
                     validate: isValidDate,
-                    pattern: /^[0-9]+$/,
                   })}
                   placeholder='ММ / ГГ'
                   errors={errors.expire}
-                  text={'Поле обязательно'}
                 />
-                {errors.expire?.type === 'pattern' && <p>Только числа</p>}
               </div>
 
               <div>
