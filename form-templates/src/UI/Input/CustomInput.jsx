@@ -7,6 +7,7 @@ const CustomInput = ({
   register,
   title,
   errors,
+  text,
   format = () => {},
   className = '',
   type = 'text',
