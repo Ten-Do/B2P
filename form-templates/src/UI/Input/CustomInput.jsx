@@ -17,7 +17,7 @@ const CustomInput = ({
     <label className={className ? className : ''}>
       {title}
       <input type={type} {...register} onChange={format} placeholder={placeholder} />
-      {errors && <p>{text}</p>}
+      {errors && <p>{errors.message}</p>}
     </label>
   )
 }

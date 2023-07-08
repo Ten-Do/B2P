@@ -53,10 +53,14 @@ export default function Unipay({ toggle }) {
         <CustomInput
           title={'Введите сумму заказа'}
           type='text'
-          register={register('amount', { required: true, minLength: 1, maxLength: 7, pattern: /^[0-9.,]+$/ })}
+          register={register('amount', {
+            required: 'Поле обязательно',
+            minLength: 1,
+            maxLength: 7,
+            pattern: /^[0-9.,]+$/,
+          })}
           placeholder='0'
           errors={errors.amount}
-          text={'Поле обязательно'}
         />
         {errors.amount?.type === 'pattern' && <p>Только положительные числа</p>}
 
@@ -72,26 +76,24 @@ export default function Unipay({ toggle }) {
         <CustomInput
           title={'Email'}
           type='email'
-          register={register('email', { required: true })}
+          register={register('email', { required: 'Поле обязательно' })}
           placeholder='example@mail.com'
           errors={errors.email}
-          text={'Поле обязательно'}
         />
 
         {/* DESCRIPTION INPUT */}
         <CustomInput
           title={'Описание'}
           type='text'
-          register={register('description', { required: true })}
+          register={register('description', { required: 'Поле обязательно' })}
           placeholder='Что-то о заказе'
           errors={errors.description}
-          text={'Поле обязательно'}
         />
       </div>
 
       <Button
-        //className={isFormValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
-        className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
+        className={isFormEmpty ? ButtonSubmitEnabled : ButtonSubmitDisabled}
+        //className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
         onClick={handleSubmit(toggle)}
         type='submit'
       >

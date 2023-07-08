@@ -40,7 +40,7 @@ export default function Payment({ fee, toggle }) {
     formState: { errors, isValid },
   } = useFormContext()
 
-  //const isFormEmpty = Object.keys(errors).length === 0
+  const isFormEmpty = Object.keys(errors).length === 0
   //console.log(Object.keys(errors).length)
 
   const isFormValid = isValid
@@ -72,8 +72,7 @@ export default function Payment({ fee, toggle }) {
                 title={'Номер карты'}
                 format={formatCardNumber}
                 register={register('number', {
-                  required: 'true',
-                  message: 'Поле обязательно',
+                  required: 'Поле обязательно',
                   validate: isValidCardNum,
                 })}
                 placeholder='1234 5678 1234 5678'
@@ -103,12 +102,11 @@ export default function Payment({ fee, toggle }) {
                   type='password'
                   format={formatCVC}
                   register={register('code', {
-                    required: true,
+                    required: 'Поле обязательно',
                     pattern: { value: /^(\d{3})$/g, message: 'Код должен состоять из трех цифр' },
                   })}
                   placeholder='123'
                   errors={errors.code}
-                  text={'Поле обязательно'}
                 />
               </div>
 
@@ -134,7 +132,7 @@ export default function Payment({ fee, toggle }) {
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
             <Button
-              className={isFormValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
+              className={isFormEmpty ? ButtonSubmitEnabled : ButtonSubmitDisabled}
               //className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
               type={'submit'}
               onClick={handleSubmit()}
