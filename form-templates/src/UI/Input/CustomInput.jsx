@@ -7,6 +7,7 @@ const CustomInput = ({
   register,
   title,
   errors,
+  text,
   format = () => {},
   className = '',
   type = 'text',
@@ -16,7 +17,7 @@ const CustomInput = ({
     <label className={className ? className : ''}>
       {title}
       <input type={type} {...register} onChange={format} placeholder={placeholder} />
-      {errors && <p>{errors.message}</p>}
+      {errors && <p>{text}</p>}
     </label>
   )
 }

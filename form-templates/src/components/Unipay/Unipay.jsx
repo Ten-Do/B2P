@@ -22,16 +22,30 @@ const AmountValueIcon = ({ fillColor }) => (
   </svg>
 )
 
+let ButtonSubmitDisabled = cn([
+  `${CustomButtonStyles.submit__button}`,
+  ` ${CustomButtonStyles.submit__button__disabled}`,
+])
+
 let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
 
 export default function Unipay({ toggle }) {
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useFormContext()
 
+  const isFormEmpty = Object.keys(errors).length === 0
+  //const isFormValid = isValid
+
   return (
-    <div className={UnipayStyles.unipay__form}>
+    <div
+      className={UnipayStyles.unipay__form}
+      onSubmit={handleSubmit((data) => {
+        toggle()
+      })}
+    >
       <h1 className={UnipayStyles.form__title}>Создание заказа</h1>
 
       <div className={UnipayStyles.input__container}>
@@ -39,10 +53,12 @@ export default function Unipay({ toggle }) {
         <CustomInput
           title={'Введите сумму заказа'}
           type='text'
-          register={register('amount', { required: true, minLength: 1, maxLength: 7 })}
+          register={register('amount', { required: true, minLength: 1, maxLength: 7, pattern: /^[0-9.,]+$/ })}
           placeholder='0'
           errors={errors.amount}
+          text={'Поле обязательно'}
         />
+        {errors.amount?.type === 'pattern' && <p>Только положительные числа</p>}
 
         {/* CURRENCY ICON */}
         <figure className={UnipayStyles.amount__icon}>
@@ -59,6 +75,7 @@ export default function Unipay({ toggle }) {
           register={register('email', { required: true })}
           placeholder='example@mail.com'
           errors={errors.email}
+          text={'Поле обязательно'}
         />
 
         {/* DESCRIPTION INPUT */}
@@ -68,10 +85,16 @@ export default function Unipay({ toggle }) {
           register={register('description', { required: true })}
           placeholder='Что-то о заказе'
           errors={errors.description}
+          text={'Поле обязательно'}
         />
       </div>
 
-      <Button className={ButtonSubmitEnabled} onClick={toggle}>
+      <Button
+        //className={isFormValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
+        className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
+        onClick={handleSubmit(toggle)}
+        type='submit'
+      >
         Создать
       </Button>
     </div>

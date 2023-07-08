@@ -28,6 +28,8 @@ let ButtonSubmitDisabled = cn([
   ` ${CustomButtonStyles.submit__button__disabled}`,
 ])
 
+let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
+
 let SuaiPayButton = cn([`${CustomButtonStyles.submit__button}`, `${CustomButtonStyles.SuaiPay__button}`])
 
 export default function Payment({ fee, toggle }) {
@@ -35,8 +37,13 @@ export default function Payment({ fee, toggle }) {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useFormContext()
+
+  //const isFormEmpty = Object.keys(errors).length === 0
+  //console.log(Object.keys(errors).length)
+
+  const isFormValid = isValid
 
   return (
     <>
@@ -47,9 +54,11 @@ export default function Payment({ fee, toggle }) {
 
         <div
           className={PaymentStyles.card__form}
-          onSubmit={handleSubmit((data) => {
-            alert(JSON.stringify(data))
-          })}
+          autoComplete='off'
+          action='/'
+          // onSubmit={handleSubmit((data) => {
+          //   alert(JSON.stringify(data))
+          // })}
         >
           {/* Bank logo */}
           <figure className={PaymentStyles.bank__logo}>
@@ -62,9 +71,10 @@ export default function Payment({ fee, toggle }) {
               <CustomInput
                 title={'Номер карты'}
                 format={formatCardNumber}
-                register={register('number', { required: 'Поле обязательно', validate: isValidCardNum })}
+                register={register('number', { required: 'true', validate: isValidCardNum })}
                 placeholder='1234 5678 1234 5678'
                 errors={errors.number}
+                text={'Поле обязательно'}
               />
             </div>
 
@@ -75,12 +85,15 @@ export default function Payment({ fee, toggle }) {
                   title={'Месяц / год'}
                   format={formatDate}
                   register={register('expire', {
-                    required: 'Поле обязательно',
+                    required: true,
                     validate: isValidDate,
+                    pattern: /^[0-9]+$/,
                   })}
                   placeholder='ММ / ГГ'
                   errors={errors.expire}
+                  text={'Поле обязательно'}
                 />
+                {errors.expire?.type === 'pattern' && <p>Только числа</p>}
               </div>
 
               <div>
@@ -90,11 +103,12 @@ export default function Payment({ fee, toggle }) {
                   type='password'
                   format={formatCVC}
                   register={register('code', {
-                    required: 'Поле обязательно',
+                    required: true,
                     pattern: { value: /^(\d{3})$/g, message: 'Код должен состоять из трех цифр' },
                   })}
                   placeholder='123'
                   errors={errors.code}
+                  text={'Поле обязательно'}
                 />
               </div>
 
@@ -119,11 +133,18 @@ export default function Payment({ fee, toggle }) {
 
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
-            <Button className={ButtonSubmitDisabled} type={'submit'}>
+            <Button
+              className={isFormValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
+              //className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
+              type={'submit'}
+              onClick={handleSubmit()}
+            >
               Оплатить {watch('amount') ?? 0}₽
             </Button>
 
-            <Button className={SuaiPayButton}>SUAI PAY</Button>
+            <Button className={SuaiPayButton} type={'button'}>
+              SUAI PAY
+            </Button>
           </div>
           <p className={PaymentStyles.agreement__policy}>
             Нажимая на кнопку «Перевести», вы соглашаетесь с{' '}
