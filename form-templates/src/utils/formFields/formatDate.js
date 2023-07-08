@@ -20,9 +20,16 @@
  * <input onChange={formatDate} ... />
  * @param {EventListenerObject} event
  */
-export const formatDate = (event) => {
-  event.target.value = event.target.value
-    .slice(0, 7)
+export const formatDate = ({ target }) => {
+  const d = target.value.length - target.selectionStart
+  target.value = _formatDate(target.value)
+  target.setSelectionRange(target.value.length - d, target.value.length - d)
+}
+
+const _formatDate = (value) => {
+  return value
+    .replace(/\D/g, '')
+    .slice(0, 4)
     .replace(/(\d{2}) \/ /g, '$1')
     .replace(/(\d{2})(\d{1,2})/g, '$1 / $2')
 }

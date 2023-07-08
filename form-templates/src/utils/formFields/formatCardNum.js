@@ -8,9 +8,15 @@
  * <input onChange={formatCardNumber} ... />
  * @param {EventListenerObject} event
  */
-export const formatCardNumber = (event) => {
-  event.target.value = event.target.value
+export const formatCardNumber = ({ target }) => {
+  const d = target.value.length - target.selectionStart
+  target.value = _formatCardNumber(target.value)
+  target.setSelectionRange(target.value.length - d, target.value.length - d)
+}
+
+const _formatCardNumber = (value) => {
+  return value
     .replace(/\D/g, '')
-    .slice(0, 16)
+    .slice(0, 19)
     .replace(/(\d{4})(?=\d)/g, '$1 ')
 }
