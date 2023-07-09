@@ -10,6 +10,7 @@ import CustomButtonStyles from '../../UI/Button/CustomButton.module.scss'
 
 /* COMPONENTS */
 import CustomInput from '../../UI/Input/CustomInput'
+import { formatAmount } from '../../utils/formFields/formatAmount'
 
 /* ICONS */
 // svg current color - change onchange input color
@@ -51,18 +52,16 @@ export default function Unipay({ toggle }) {
       <div className={UnipayStyles.input__container}>
         {/* ORDER PRICE INPUT */}
         <CustomInput
-          title={'Введите сумму заказа'}
-          type='text'
+          title='Введите сумму заказа'
           register={register('amount', {
             required: 'Поле обязательно',
-            minLength: 1,
-            maxLength: 7,
-            pattern: /^[0-9.,]+$/,
           })}
-          placeholder='0'
           errors={errors.amount}
+          options={{
+            placeholder: '0',
+            onChange: formatAmount,
+          }}
         />
-        {errors.amount?.type === 'pattern' && <p>Только положительные числа</p>}
 
         {/* CURRENCY ICON */}
         <figure className={UnipayStyles.amount__icon}>
@@ -74,20 +73,26 @@ export default function Unipay({ toggle }) {
 
         {/* EMAIL INPUT */}
         <CustomInput
-          title={'Email'}
-          type='email'
-          register={register('email', { required: 'Поле обязательно' })}
-          placeholder='example@mail.com'
+          title='Email'
+          register={register('email', {
+            required: 'Поле обязательно',
+            pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: 'email введен неверно' },
+          })}
           errors={errors.email}
+          options={{
+            placeholder: 'example@mail.com',
+            type: 'email',
+          }}
         />
 
         {/* DESCRIPTION INPUT */}
         <CustomInput
-          title={'Описание'}
-          type='text'
+          title='Описание'
           register={register('description', { required: 'Поле обязательно' })}
-          placeholder='Что-то о заказе'
           errors={errors.description}
+          options={{
+            placeholder: 'Что-то о заказе',
+          }}
         />
       </div>
 

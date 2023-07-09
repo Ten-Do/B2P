@@ -69,14 +69,13 @@ export default function Payment({ fee, toggle }) {
             <div className={PaymentStyles.number__attribute}>
               {/* CARD NUMBER INPUT */}
               <CustomInput
-                title={'Номер карты'}
-                format={formatCardNumber}
-                register={register('number', {
-                  required: 'Поле обязательно',
-                  validate: isValidCardNum,
-                })}
-                placeholder='1234 5678 1234 5678'
+                title='Номер карты'
+                register={register('number', { required: 'Поле обязательно', validate: isValidCardNum })}
                 errors={errors.number}
+                options={{
+                  placeholder: '1234 5678 1234 5678',
+                  onChange: formatCardNumber,
+                }}
               />
             </div>
 
@@ -84,14 +83,16 @@ export default function Payment({ fee, toggle }) {
               {/* EXPIRE DATE INPUT */}
               <div>
                 <CustomInput
-                  title={'Месяц / год'}
-                  format={formatDate}
+                  title='Месяц / год'
                   register={register('expire', {
                     required: 'Поле обязательно',
                     validate: isValidDate,
                   })}
-                  placeholder='ММ / ГГ'
                   errors={errors.expire}
+                  options={{
+                    placeholder: 'ММ / ГГ',
+                    onChange: formatDate,
+                  }}
                 />
               </div>
 
@@ -99,14 +100,16 @@ export default function Payment({ fee, toggle }) {
                 {/* CVV CODE INPUT */}
                 <CustomInput
                   title={'CVV / CVC'}
-                  type='password'
-                  format={formatCVC}
                   register={register('code', {
                     required: 'Поле обязательно',
                     pattern: { value: /^(\d{3})$/g, message: 'Код должен состоять из трех цифр' },
                   })}
-                  placeholder='123'
                   errors={errors.code}
+                  options={{
+                    mode: 'secret',
+                    placeholder: '123',
+                    onChange: formatCVC,
+                  }}
                 />
               </div>
 
@@ -120,11 +123,7 @@ export default function Payment({ fee, toggle }) {
 
         {/* CHECKBOX INPUT */}
         <div className={PaymentStyles.savecard__block}>
-          <CustomInput
-            className={PaymentStyles.checkbox__label}
-            title={'Сохранить карту для следующих покупок'}
-            type='checkbox'
-          />
+          <CustomInput title='Сохранить карту для следующих покупок' options={{ type: 'checkbox' }} />
         </div>
 
         <p className={PaymentStyles.payment__fee}>Комиссия: {fee ?? 0}₽</p>
