@@ -20,8 +20,9 @@ const _formatAmount = (value) => {
   const parts = value
     .replace(/[^0-9.]/g, '')
     .replace(/\.(?=.*\.)/g, '')
+    .replace(/^0+/, '')
     .split('.')
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',').slice(0, 13)
+  parts[0] = parts[0].slice(0, 13).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   if (parts[1]) parts[1] = parts[1].slice(0, 2)
   return parts.join('.')
 }

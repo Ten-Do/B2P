@@ -3,20 +3,11 @@ import './CustomInput.scss'
 
 //styles scss
 
-const CustomInput = ({
-  register,
-  title,
-  errors,
-  text,
-  format = () => {},
-  className = '',
-  type = 'text',
-  placeholder = '',
-}) => {
+const CustomInput = ({ register, title, errors, options }) => {
   return (
-    <label className={className ? className : ''}>
+    <label className={options?.type === 'checkbox' ? 'checkbox__label' : ''}>
       {title}
-      <input type={type} {...register} onChange={format} placeholder={placeholder} />
+      <input {...register} {...options} />
       {errors && <p>{errors.message}</p>}
     </label>
   )

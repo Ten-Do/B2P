@@ -20,14 +20,30 @@ $label__font-weight: 400;
 $label-color: rgb(155, 155, 155);
 
 label {
-    text-align: left;
-    color: $label-color;
-    font-weight: $label__font-weight;
-  
-    &:hover {
-      cursor: pointer;
+  text-align: left;
+  color: $label-color;
+  font-weight: $label__font-weight;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.checkbox__label {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 15px;
+    color: $chekbox__label-color;
+    font-size: 15px;
+    font-weight: 400;
+
+    input[type='checkbox'] {
+      width: 24px;
+      accent-color: $chekbox__checked-color;
+      margin: auto;
     }
   }
+}
 
 input {
   box-sizing: border-box;
@@ -37,6 +53,10 @@ input {
   margin-bottom: $input__margin-bottom;
   border-bottom: 1px solid $input__border-color;
   padding: 10px 0;
+
+  &[mode='secret'] {
+    font-family: 'password';
+  }
 
   &::placeholder {
     color: $placeholder-color;
