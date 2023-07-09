@@ -36,7 +36,7 @@ export default function Footer({ order }) {
         </div>
 
         {/* order - динамический номер заказа */}
-        <div className={FooterStyles.footer__order}>Заказ №{order ?? 123456}</div>
+        {/* <div className={FooterStyles.footer__order}>Заказ №{order ?? 123456}</div> */}
       </section>
     </div>
   )
