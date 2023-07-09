@@ -34,10 +34,10 @@ export default function Unipay({ toggle }) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useFormContext()
 
-  const isFormEmpty = Object.keys(errors).length === 0
+  //const isFormEmpty = Object.keys(errors).length === 0
   //const isFormValid = isValid
 
   return (
@@ -97,7 +97,7 @@ export default function Unipay({ toggle }) {
       </div>
 
       <Button
-        className={isFormEmpty ? ButtonSubmitEnabled : ButtonSubmitDisabled}
+        className={isValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
         //className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
         onClick={handleSubmit(toggle)}
         type='submit'
