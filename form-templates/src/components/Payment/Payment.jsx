@@ -42,8 +42,7 @@ export default function Payment({ fee, toggle }) {
 
   const isFormEmpty = Object.keys(errors).length === 0
   //console.log(Object.keys(errors).length)
-
-  const isFormValid = isValid
+  //const isFormValid = isValid
 
   return (
     <>
@@ -131,7 +130,7 @@ export default function Payment({ fee, toggle }) {
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
             <Button
-              className={isFormEmpty ? ButtonSubmitEnabled : ButtonSubmitDisabled}
+              className={isValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
               //className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
               type={'submit'}
               onClick={handleSubmit()}
