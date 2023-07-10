@@ -15,6 +15,7 @@ $cursor__pointer: pointer;
 $white-color: #fff;
 $reset-style: none;
 $agreement__background: #a6a6a6;
+$tooltip-background: #595959;
 
 // // INPUT
 // $input__maxwidth: 300px;
@@ -23,6 +24,16 @@ $agreement__background: #a6a6a6;
 // $input__border-color: rgb(211, 211, 211);
 $chekbox__label-color: #595959;
 $chekbox__checked-color: #ff335f;
+
+.tooltip {
+  background-color: $tooltip-background;
+  color: $white-color;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 160px;
+  min-height: 50px;
+  font-size: 12px;
+}
 
 .form__container {
   margin: $form-margin;

@@ -2,6 +2,7 @@
 import cn from 'classnames'
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
+import { Tooltip } from 'react-tooltip'
 
 /* STYLES */
 import PaymentStyles from './Payment.module.scss'
@@ -40,10 +41,6 @@ export default function Payment({ fee, toggle }) {
     formState: { errors, isValid },
   } = useFormContext()
 
-  const isFormEmpty = Object.keys(errors).length === 0
-  //console.log(Object.keys(errors).length)
-  //const isFormValid = isValid
-
   return (
     <>
       <section className={PaymentStyles.form__container}>
@@ -51,14 +48,7 @@ export default function Payment({ fee, toggle }) {
           &#10094;
         </span>
 
-        <div
-          className={PaymentStyles.card__form}
-          autoComplete='off'
-          action='/'
-          // onSubmit={handleSubmit((data) => {
-          //   alert(JSON.stringify(data))
-          // })}
-        >
+        <div className={PaymentStyles.card__form} autoComplete='off' action='/'>
           {/* Bank logo */}
           <figure className={PaymentStyles.bank__logo}>
             <img src={BankLogo} alt='bank__logo' />
@@ -113,9 +103,14 @@ export default function Payment({ fee, toggle }) {
               </div>
 
               {/* CVV CODE INFO SIGN */}
-              <figure className={PaymentStyles.cvv__info}>
+              <figure id='anchor-element-id' className={PaymentStyles.cvv__info}>
                 <img src={CodeInfo} alt='code info'></img>
               </figure>
+              <Tooltip
+                anchorSelect='#anchor-element-id'
+                className={PaymentStyles.tooltip}
+                content='Три цифры с обратной стороны карты'
+              />
             </div>
           </div>
         </div>
