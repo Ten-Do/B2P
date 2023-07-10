@@ -125,7 +125,7 @@ export default function Payment({ fee, toggle }) {
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
             <Button
-              //className={isValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
+              className={isValid && CustomButtonStyles.submit__button__enabled}
               type='submit'
               disabled={!isValid}
               onClick={handleSubmit()}

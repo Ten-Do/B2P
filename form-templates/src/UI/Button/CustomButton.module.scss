@@ -48,19 +48,20 @@ button {
   &:active {
     transition: 0.3s all;
   }
+
+  &:disabled {
+    background: $button__background-disabled;
+
+    &:hover {
+      background: $button__background-disabled-hover;
+    }
+
+    &:active {
+      background: $button__background-disabled-active;
+    }
+  }
 }
 
-button.disabled {
-  background: $button__background-disabled;
-
-  &:hover {
-    background: $button__background-disabled-hover;
-  }
-
-  &:active {
-    background: $button__background-disabled-active;
-  }
-}
 // .submit__button {
 //   border-radius: $button__border-radius;
 //   color: $white-color;
