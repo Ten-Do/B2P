@@ -24,12 +24,12 @@ import CustomButtonStyles from '../../UI/Button/CustomButton.module.scss'
 import CustomInput from '../../UI/Input/CustomInput'
 import Footer from '../Footer/Footer'
 
-let ButtonSubmitDisabled = cn([
-  `${CustomButtonStyles.submit__button}`,
-  ` ${CustomButtonStyles.submit__button__disabled}`,
-])
+// let ButtonSubmitDisabled = cn([
+//   `${CustomButtonStyles.submit__button}`,
+//   ` ${CustomButtonStyles.submit__button__disabled}`,
+// ])
 
-let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
+// let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
 
 let SuaiPayButton = cn([`${CustomButtonStyles.submit__button}`, `${CustomButtonStyles.SuaiPay__button}`])
 
@@ -125,9 +125,9 @@ export default function Payment({ fee, toggle }) {
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
             <Button
-              className={isValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
-              //className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
-              type={'submit'}
+              //className={isValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
+              type='submit'
+              disabled={!isValid}
               onClick={handleSubmit()}
             >
               Оплатить {watch('amount') ?? 0}₽

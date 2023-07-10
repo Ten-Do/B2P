@@ -22,12 +22,12 @@ const AmountValueIcon = ({ fillColor }) => (
   </svg>
 )
 
-let ButtonSubmitDisabled = cn([
-  `${CustomButtonStyles.submit__button}`,
-  ` ${CustomButtonStyles.submit__button__disabled}`,
-])
+// let ButtonSubmitDisabled = cn([
+//   `${CustomButtonStyles.submit__button}`,
+//   ` ${CustomButtonStyles.submit__button__disabled}`,
+// ])
 
-let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
+// let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
 
 export default function Unipay({ toggle }) {
   const {
@@ -93,9 +93,9 @@ export default function Unipay({ toggle }) {
       </div>
 
       <Button
-        className={isValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
-        //className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
+        //className={isValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
         onClick={handleSubmit(toggle)}
+        disabled={!isValid}
         type='submit'
       >
         Создать
