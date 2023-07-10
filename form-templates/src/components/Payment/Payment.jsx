@@ -120,7 +120,7 @@ export default function Payment({ fee, toggle }) {
           <CustomInput title='Сохранить карту для следующих покупок' options={{ type: 'checkbox' }} />
         </div>
 
-        <p className={PaymentStyles.payment__fee}>Комиссия: {fee ?? 0}₽</p>
+        <div className={PaymentStyles.payment__fee}>Комиссия: {fee ?? 0}₽</div>
 
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
@@ -137,10 +137,10 @@ export default function Payment({ fee, toggle }) {
               SUAI PAY
             </Button>
           </div>
-          <p className={PaymentStyles.agreement__policy}>
+          <div className={PaymentStyles.agreement__policy}>
             Нажимая на кнопку «Перевести», вы соглашаетесь с{' '}
             <b className={PaymentStyles.bold__span}>условиями оферты</b>
-          </p>
+          </div>
         </div>
       </section>
 

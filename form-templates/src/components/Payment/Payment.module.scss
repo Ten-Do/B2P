@@ -3,7 +3,7 @@
   $width: 100%,
   $form-maxwidth: 412px,
   $form-margin: 5vh auto,
-  $form-padding: 48px 56px
+  $form-padding: 40px 56px
 );
 
 @import '../../styles/vars.scss';
@@ -17,11 +17,6 @@ $reset-style: none;
 $agreement__background: #a6a6a6;
 $tooltip-background: #595959;
 
-// // INPUT
-// $input__maxwidth: 300px;
-// $input__minheight: 30px;
-// $input__margin-bottom: 20px;
-// $input__border-color: rgb(211, 211, 211);
 $chekbox__label-color: #595959;
 $chekbox__checked-color: #ff335f;
 
@@ -62,30 +57,6 @@ $chekbox__checked-color: #ff335f;
     position: relative;
     @include form__appearance;
 
-    // input {
-    //     box-sizing: border-box;
-    //     width: $width;
-    //     max-width: $input__maxwidth;
-    //     min-height: $input__minheight;
-    //     margin-bottom: $input__margin-bottom;
-    //     border-bottom: 1px solid $input__border-color;
-
-    //     &::placeholder {
-    //         color: $placeholder-color;
-    //     }
-
-    //     &:active,
-    //     &:focus,
-    //     &:hover {
-    //         border-bottom: 1px solid $error-color;
-    //         transition: 0.3s all;
-    //     }
-
-    //     &:hover {
-    //         cursor: $cursor__pointer;
-    //     }
-    // }
-
     .bank__logo {
       width: fit-content;
       position: absolute;
@@ -100,10 +71,15 @@ $chekbox__checked-color: #ff335f;
     }
 
     .card__attribites {
+      .number__attribute {
+        margin-bottom: 15px;
+      }
+
       .date__attribute {
         @include spaceBetween__flex;
         gap: 35px;
         position: relative;
+        align-items: center;
       }
     }
   }
@@ -123,10 +99,6 @@ $chekbox__checked-color: #ff335f;
 }
 
 .payment__agreement {
-  //   @include center__flex;
-  //   flex-direction: column;
-  //   align-items: center;
-
   .buttons__container {
     display: flex;
     gap: 20px;
@@ -142,7 +114,7 @@ $chekbox__checked-color: #ff335f;
     font-size: 11px;
     padding: 0 12px;
 
-    p {
+    & > p {
       width: 100%;
       max-width: 240px;
     }
