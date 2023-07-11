@@ -1,6 +1,6 @@
 /* eslint-disable import/order */
 import cn from 'classnames'
-import React from 'react'
+import React, { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Tooltip } from 'react-tooltip'
 
@@ -9,7 +9,6 @@ import PaymentStyles from './Payment.module.scss'
 
 /* ICONS */
 import CodeInfo from '../../assets/ic_ques.svg'
-import BankLogo from '../../assets/tinkoff-logo.svg'
 
 /* UTILS */
 import { formatCardNumber } from '../../utils/formFields/formatCardNum'
@@ -23,6 +22,7 @@ import Button from '../../UI/Button/CustomButton'
 import CustomButtonStyles from '../../UI/Button/CustomButton.module.scss'
 import CustomInput from '../../UI/Input/CustomInput'
 import Footer from '../Footer/Footer'
+import { fetchCardInfo } from '../../utils/payment/fetchCardInfo'
 
 // let ButtonSubmitDisabled = cn([
 //   `${CustomButtonStyles.submit__button}`,
@@ -40,19 +40,27 @@ export default function Payment({ fee, toggle }) {
     watch,
     formState: { errors, isValid },
   } = useFormContext()
-
+  const [card, setCard] = useState(null) // {}
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <section className={PaymentStyles.form__container}>
         <span className={PaymentStyles.previous__arrow} onClick={toggle}>
           &#10094;
         </span>
-
-        <div className={PaymentStyles.card__form} autoComplete='off' action='/'>
+        <div
+          style={
+            card
+              ? { boxShadow: `0 0 18px ${card?.colors?.main}`, transition: 'all 0.5s ease' }
+              : { transition: 'all 0.5s ease' }
+          }
+          className={PaymentStyles.card__form}
+        >
           {/* Bank logo */}
-          <figure className={PaymentStyles.bank__logo}>
-            <img src={BankLogo} alt='bank__logo' />
-          </figure>
+          {card?.logo && (
+            <figure className={PaymentStyles.bank__logo}>
+              <img src={process.env.PUBLIC_URL + '/banks/icons/' + card.logo + '.svg'} alt='bank__logo' />
+            </figure>
+          )}
 
           <div className={PaymentStyles.card__attribites}>
             <div className={PaymentStyles.number__attribute}>
@@ -63,7 +71,12 @@ export default function Payment({ fee, toggle }) {
                 errors={errors.number}
                 options={{
                   placeholder: '1234 5678 1234 5678',
-                  onChange: formatCardNumber,
+                  onChange: (e) => {
+                    fetchCardInfo(e.target.value).then((cardInfo) => {
+                      setCard(cardInfo)
+                    })
+                    formatCardNumber(e)
+                  },
                 }}
               />
             </div>
@@ -128,7 +141,7 @@ export default function Payment({ fee, toggle }) {
               className={isValid && CustomButtonStyles.submit__button__enabled}
               type='submit'
               disabled={!isValid}
-              onClick={handleSubmit()}
+              onClick={handleSubmit(console.log)}
             >
               Оплатить {watch('amount') ?? 0}₽
             </Button>
@@ -149,6 +162,6 @@ export default function Payment({ fee, toggle }) {
       {/* фейковая функция комиссии - когда pan заполнен, отправляем запрос: сигнатура, amount, paysystem/card bin */}
 
       <Footer />
-    </>
+    </div>
   )
 }
