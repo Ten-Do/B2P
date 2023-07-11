@@ -39,6 +39,7 @@ img {
   width: $width;
   max-width: $form-maxwidth;
   position: relative;
+  flex: 1 0 auto;
 
   .previous__arrow {
     cursor: pointer;
@@ -72,8 +73,8 @@ img {
 
     .cvv__info {
       position: absolute;
-      right: 30px;
-      top: 3px;
+      right: 0;
+      top: 1px;
     }
 
     .card__attribites {

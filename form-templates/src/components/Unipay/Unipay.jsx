@@ -92,12 +92,7 @@ export default function Unipay({ toggle }) {
         />
       </div>
 
-      <Button
-        className={isValid && CustomButtonStyles.submit__button__enabled}
-        onClick={handleSubmit(toggle)}
-        disabled={!isValid}
-        type='submit'
-      >
+      <Button className={isValid && CustomButtonStyles.submit__button__enabled} onClick={toggle} disabled={!isValid}>
         Создать
       </Button>
     </div>

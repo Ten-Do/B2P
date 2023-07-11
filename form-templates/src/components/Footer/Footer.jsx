@@ -32,7 +32,11 @@ export default function Footer({ order }) {
           <figure className={FooterStyles.lock__icon}>
             <img src={LockIcon} alt='lock__icon' />
           </figure>
-          <span className={FooterStyles.secure__info}>Данные банковской карты будут переданы в зашифрованном виде</span>
+          <span className={FooterStyles.secure__info}>
+            Данные банковской карты будут
+            <br />
+            переданы в зашифрованном виде
+          </span>
         </div>
 
         {/* order - динамический номер заказа */}

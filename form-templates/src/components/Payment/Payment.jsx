@@ -42,7 +42,7 @@ export default function Payment({ fee, toggle }) {
   } = useFormContext()
   const [card, setCard] = useState(null) // {}
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <section className={PaymentStyles.form__container}>
         <span className={PaymentStyles.previous__arrow} onClick={toggle}>
           &#10094;
@@ -141,7 +141,7 @@ export default function Payment({ fee, toggle }) {
               className={isValid && CustomButtonStyles.submit__button__enabled}
               type='submit'
               disabled={!isValid}
-              onClick={handleSubmit()}
+              onClick={handleSubmit(console.log)}
             >
               Оплатить {watch('amount') ?? 0}₽
             </Button>
@@ -162,6 +162,6 @@ export default function Payment({ fee, toggle }) {
       {/* фейковая функция комиссии - когда pan заполнен, отправляем запрос: сигнатура, amount, paysystem/card bin */}
 
       <Footer />
-    </>
+    </div>
   )
 }
