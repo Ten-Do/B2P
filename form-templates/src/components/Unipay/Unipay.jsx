@@ -13,7 +13,6 @@ import CustomInput from '../../UI/Input/CustomInput'
 import { formatAmount } from '../../utils/formFields/formatAmount'
 
 /* ICONS */
-// svg current color - change onchange input color
 const AmountValueIcon = ({ fillColor }) => (
   <svg fill='none' width='12' height='13' viewBox='0 0 12 13' xmlns='http://www.w3.org/2000/svg'>
     <path
@@ -23,12 +22,12 @@ const AmountValueIcon = ({ fillColor }) => (
   </svg>
 )
 
-let ButtonSubmitDisabled = cn([
-  `${CustomButtonStyles.submit__button}`,
-  ` ${CustomButtonStyles.submit__button__disabled}`,
-])
+// let ButtonSubmitDisabled = cn([
+//   `${CustomButtonStyles.submit__button}`,
+//   ` ${CustomButtonStyles.submit__button__disabled}`,
+// ])
 
-let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
+// let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
 
 export default function Unipay({ toggle }) {
   const {
@@ -36,9 +35,6 @@ export default function Unipay({ toggle }) {
     handleSubmit,
     formState: { errors, isValid },
   } = useFormContext()
-
-  //const isFormEmpty = Object.keys(errors).length === 0
-  //const isFormValid = isValid
 
   return (
     <div
@@ -97,9 +93,9 @@ export default function Unipay({ toggle }) {
       </div>
 
       <Button
-        className={isValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
-        //className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
+        className={isValid && CustomButtonStyles.submit__button__enabled}
         onClick={handleSubmit(toggle)}
+        disabled={!isValid}
         type='submit'
       >
         Создать

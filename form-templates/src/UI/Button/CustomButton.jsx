@@ -1,6 +1,5 @@
 import React from 'react'
-
-//props isloading + button disabled
+import './CustomButton.module.scss'
 
 const CustomButton = ({ className, type = 'button', children, onClick }) => {
   return (

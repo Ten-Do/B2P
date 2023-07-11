@@ -54,6 +54,12 @@ input {
   border-bottom: 1px solid $input__border-color;
   padding: 10px 0;
 
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 40rem #ffff inset;
+  }
+
   &[mode='secret'] {
     font-family: 'password';
   }

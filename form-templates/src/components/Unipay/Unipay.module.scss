@@ -14,16 +14,6 @@ $placeholder-color: rgb(223, 223, 223);
 $white-color: #fff;
 $reset-style: none;
 
-// LABEL
-// $label__font-weight: 400;
-// $label-color: rgb(155, 155, 155);
-
-// INPUT
-// $input__maxwidth: 300px;
-// $input__minheight: 30px;
-// $input__margin-bottom: 40px;
-// $input__border-color: rgb(211, 211, 211);
-
 // H1
 $h1-color: rgb(88, 88, 88);
 $h1-weight: 700;
@@ -45,7 +35,6 @@ $h1__margin-bottom: 30px;
   .input__container {
     position: relative;
     display: grid;
-    //grid-template-rows: repeat(3, 1fr);
     row-gap: 30px;
 
     margin-bottom: 50px;
@@ -61,52 +50,16 @@ h1 {
 
 p {
   color: $error-color;
+  position: absolute;
+  font-size: 14px;
 }
 
 p::before {
   display: inline;
 }
 
-// input {
-//   box-sizing: border-box;
-//   width: $width;
-//   max-width: $input__maxwidth;
-//   min-height: $input__minheight;
-//   border-bottom: 1px solid $input__border-color;
-//   padding: 10px 0;
-
-//   &::placeholder {
-//     color: $placeholder-color;
-//   }
-
-//   // &:not(:placeholder-shown) {
-//   //     border-bottom: 1px solid $input__border-color;
-//   // }
-
-//   &:active,
-//   &:focus,
-//   &:hover {
-//     border-bottom: 1px solid $error-color;
-//     transition: 0.3s all;
-//   }
-
-//   &:hover {
-//     cursor: pointer;
-//   }
-// }
-
 .amount__icon {
   position: absolute;
   top: 30px;
   left: 300px;
 }
-
-// label {
-//   text-align: left;
-//   color: $label-color;
-//   font-weight: $label__font-weight;
-
-//   &:hover {
-//     cursor: pointer;
-//   }
-// }

@@ -32,7 +32,7 @@ $placeholder-color: rgb(223, 223, 223);
 $white-color: #fff;
 $reset-style: none;
 
-.submit__button {
+button {
   border-radius: $button__border-radius;
   color: $white-color;
   padding: $button__padding;
@@ -42,27 +42,55 @@ $reset-style: none;
   max-width: $button__desktop-width;
 
   &:hover {
-    cursor: pointer;
     transition: 0.3s all;
   }
 
   &:active {
     transition: 0.3s all;
-    box-shadow: $reset-style;
+  }
+
+  &:disabled {
+    background: $button__background-disabled;
+
+    &:hover {
+      background: $button__background-disabled-hover;
+    }
+
+    &:active {
+      background: $button__background-disabled-active;
+    }
   }
 }
 
+// .submit__button {
+//   border-radius: $button__border-radius;
+//   color: $white-color;
+//   padding: $button__padding;
+//   font-size: $button__font-size;
+//   font-weight: $button__font-weight;
+//   width: $width;
+//   max-width: $button__desktop-width;
+
+//   &:hover {
+//     transition: 0.3s all;
+//   }
+
+//   &:active {
+//     transition: 0.3s all;
+//     box-shadow: $reset-style;
+//   }
+// }
+
 .submit__button__disabled {
-  background: $button__background-disabled;
+  // background: $button__background-disabled;
 
-  &:hover {
-    background: $button__background-disabled-hover;
-    box-shadow: 0px 1px 20px -5px $button__background-disabled;
-  }
+  // &:hover {
+  //   background: $button__background-disabled-hover;
+  // }
 
-  &:active {
-    background: $button__background-disabled-active;
-  }
+  // &:active {
+  //   background: $button__background-disabled-active;
+  // }
 }
 
 .submit__button__enabled {
@@ -71,6 +99,7 @@ $reset-style: none;
   &:hover {
     background: $button__background-hover;
     box-shadow: 0px 1px 20px -5px $button__background;
+    cursor: pointer;
   }
 
   &:active {

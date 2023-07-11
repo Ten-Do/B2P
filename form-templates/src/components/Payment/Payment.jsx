@@ -2,6 +2,7 @@
 import cn from 'classnames'
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
+import { Tooltip } from 'react-tooltip'
 
 /* STYLES */
 import PaymentStyles from './Payment.module.scss'
@@ -23,12 +24,12 @@ import CustomButtonStyles from '../../UI/Button/CustomButton.module.scss'
 import CustomInput from '../../UI/Input/CustomInput'
 import Footer from '../Footer/Footer'
 
-let ButtonSubmitDisabled = cn([
-  `${CustomButtonStyles.submit__button}`,
-  ` ${CustomButtonStyles.submit__button__disabled}`,
-])
+// let ButtonSubmitDisabled = cn([
+//   `${CustomButtonStyles.submit__button}`,
+//   ` ${CustomButtonStyles.submit__button__disabled}`,
+// ])
 
-let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
+// let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
 
 let SuaiPayButton = cn([`${CustomButtonStyles.submit__button}`, `${CustomButtonStyles.SuaiPay__button}`])
 
@@ -40,10 +41,6 @@ export default function Payment({ fee, toggle }) {
     formState: { errors, isValid },
   } = useFormContext()
 
-  const isFormEmpty = Object.keys(errors).length === 0
-  //console.log(Object.keys(errors).length)
-  //const isFormValid = isValid
-
   return (
     <>
       <section className={PaymentStyles.form__container}>
@@ -51,14 +48,7 @@ export default function Payment({ fee, toggle }) {
           &#10094;
         </span>
 
-        <div
-          className={PaymentStyles.card__form}
-          autoComplete='off'
-          action='/'
-          // onSubmit={handleSubmit((data) => {
-          //   alert(JSON.stringify(data))
-          // })}
-        >
+        <div className={PaymentStyles.card__form} autoComplete='off' action='/'>
           {/* Bank logo */}
           <figure className={PaymentStyles.bank__logo}>
             <img src={BankLogo} alt='bank__logo' />
@@ -113,9 +103,14 @@ export default function Payment({ fee, toggle }) {
               </div>
 
               {/* CVV CODE INFO SIGN */}
-              <figure className={PaymentStyles.cvv__info}>
+              <figure id='anchor-element-id' className={PaymentStyles.cvv__info}>
                 <img src={CodeInfo} alt='code info'></img>
               </figure>
+              <Tooltip
+                anchorSelect='#anchor-element-id'
+                className={PaymentStyles.tooltip}
+                content='Три цифры с обратной стороны карты'
+              />
             </div>
           </div>
         </div>
@@ -125,14 +120,14 @@ export default function Payment({ fee, toggle }) {
           <CustomInput title='Сохранить карту для следующих покупок' options={{ type: 'checkbox' }} />
         </div>
 
-        <p className={PaymentStyles.payment__fee}>Комиссия: {fee ?? 0}₽</p>
+        <div className={PaymentStyles.payment__fee}>Комиссия: {fee ?? 0}₽</div>
 
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
             <Button
-              className={isValid ? ButtonSubmitEnabled : ButtonSubmitDisabled}
-              //className={cn({ [ButtonSubmitDisabled]: !isFormEmpty, [ButtonSubmitEnabled]: isFormEmpty })}
-              type={'submit'}
+              className={isValid && CustomButtonStyles.submit__button__enabled}
+              type='submit'
+              disabled={!isValid}
               onClick={handleSubmit()}
             >
               Оплатить {watch('amount') ?? 0}₽
@@ -142,10 +137,10 @@ export default function Payment({ fee, toggle }) {
               SUAI PAY
             </Button>
           </div>
-          <p className={PaymentStyles.agreement__policy}>
+          <div className={PaymentStyles.agreement__policy}>
             Нажимая на кнопку «Перевести», вы соглашаетесь с{' '}
             <b className={PaymentStyles.bold__span}>условиями оферты</b>
-          </p>
+          </div>
         </div>
       </section>
 
