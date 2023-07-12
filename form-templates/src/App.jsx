@@ -12,7 +12,7 @@ import Unipay from './components/Unipay/Unipay'
 const App = () => {
   const [currentPage, setCurrentPage] = useState('unipay')
   const formMethods = useForm({
-    mode: 'onBlur',
+    mode: 'onTouched',
     defaultValues: {
       amount: '',
       email: '',
