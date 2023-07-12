@@ -69,16 +69,19 @@ export default function Payment({ fee, toggle }) {
               {/* CARD NUMBER INPUT */}
               <CustomInput
                 title='Номер карты'
-                register={register('number', { required: 'Поле обязательно', validate: isValidCardNum })}
-                errors={errors.number}
-                options={{
-                  placeholder: '1234 5678 1234 5678',
+                register={register('number', {
+                  required: 'Поле обязательно',
+                  validate: isValidCardNum,
                   onChange: (e) => {
                     fetchCardInfo(e.target.value).then((cardInfo) => {
                       setCard(cardInfo)
                     })
                     formatCardNumber(e)
                   },
+                })}
+                errors={errors.number}
+                options={{
+                  placeholder: '1234 5678 1234 5678',
                   onKeyDown: cardNumField_onKeyPress,
                 }}
               />
@@ -92,11 +95,11 @@ export default function Payment({ fee, toggle }) {
                   register={register('expire', {
                     required: 'Поле обязательно',
                     validate: isValidDate,
+                    onChange: formatDate,
                   })}
                   errors={errors.expire}
                   options={{
                     placeholder: 'ММ / ГГ',
-                    onChange: formatDate,
                   }}
                 />
               </div>
@@ -108,12 +111,12 @@ export default function Payment({ fee, toggle }) {
                   register={register('code', {
                     required: 'Поле обязательно',
                     pattern: { value: /^(\d{3})$/g, message: 'Код должен состоять из трех цифр' },
+                    onChange: formatCVC,
                   })}
                   errors={errors.code}
                   options={{
                     mode: 'secret',
                     placeholder: '123',
-                    onChange: formatCVC,
                   }}
                 />
               </div>
