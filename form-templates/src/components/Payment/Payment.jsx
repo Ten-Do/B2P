@@ -11,7 +11,7 @@ import PaymentStyles from './Payment.module.scss'
 import CodeInfo from '../../assets/ic_ques.svg'
 
 /* UTILS */
-import { formatCardNumber } from '../../utils/formFields/formatCardNum'
+import { formatCardNumber, cardNumField_onKeyPress } from '../../utils/formFields/formatCardNum'
 import { formatCVC } from '../../utils/formFields/formatCVC'
 import { formatDate } from '../../utils/formFields/formatDate'
 import { isValidCardNum } from '../../utils/formFields/isValidCardNum'
@@ -40,6 +40,9 @@ export default function Payment({ fee, toggle }) {
     watch,
     formState: { errors, isValid },
   } = useFormContext()
+  window.showIsValid = () => {
+    console.log(isValid)
+  }
   const [card, setCard] = useState(null) // {}
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -61,7 +64,6 @@ export default function Payment({ fee, toggle }) {
               <img src={process.env.PUBLIC_URL + '/banks/icons/' + card.logo + '.svg'} alt='bank__logo' />
             </figure>
           )}
-
           <div className={PaymentStyles.card__attribites}>
             <div className={PaymentStyles.number__attribute}>
               {/* CARD NUMBER INPUT */}
@@ -77,6 +79,7 @@ export default function Payment({ fee, toggle }) {
                     })
                     formatCardNumber(e)
                   },
+                  onKeyDown: cardNumField_onKeyPress,
                 }}
               />
             </div>
