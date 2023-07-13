@@ -11,7 +11,7 @@ import PaymentStyles from './Payment.module.scss'
 import CodeInfo from '../../assets/ic_ques.svg'
 
 /* UTILS */
-import { formatCardNumber } from '../../utils/formFields/formatCardNum'
+import { formatCardNumber, cardNumField_onKeyPress } from '../../utils/formFields/formatCardNum'
 import { formatCVC } from '../../utils/formFields/formatCVC'
 import { formatDate } from '../../utils/formFields/formatDate'
 import { isValidCardNum } from '../../utils/formFields/isValidCardNum'
@@ -40,6 +40,9 @@ export default function Payment({ fee, toggle }) {
     watch,
     formState: { errors, isValid },
   } = useFormContext()
+  window.showIsValid = () => {
+    console.log(isValid)
+  }
   const [card, setCard] = useState(null) // {}
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -61,22 +64,25 @@ export default function Payment({ fee, toggle }) {
               <img src={process.env.PUBLIC_URL + '/banks/icons/' + card.logo + '.svg'} alt='bank__logo' />
             </figure>
           )}
-
           <div className={PaymentStyles.card__attribites}>
             <div className={PaymentStyles.number__attribute}>
               {/* CARD NUMBER INPUT */}
               <CustomInput
                 title='Номер карты'
-                register={register('number', { required: 'Поле обязательно', validate: isValidCardNum })}
-                errors={errors.number}
-                options={{
-                  placeholder: '1234 5678 1234 5678',
+                register={register('number', {
+                  required: 'Поле обязательно',
+                  validate: isValidCardNum,
                   onChange: (e) => {
                     fetchCardInfo(e.target.value).then((cardInfo) => {
                       setCard(cardInfo)
                     })
                     formatCardNumber(e)
                   },
+                })}
+                errors={errors.number}
+                options={{
+                  placeholder: '1234 5678 1234 5678',
+                  onKeyDown: cardNumField_onKeyPress,
                 }}
               />
             </div>
@@ -89,11 +95,11 @@ export default function Payment({ fee, toggle }) {
                   register={register('expire', {
                     required: 'Поле обязательно',
                     validate: isValidDate,
+                    onChange: formatDate,
                   })}
                   errors={errors.expire}
                   options={{
                     placeholder: 'ММ / ГГ',
-                    onChange: formatDate,
                   }}
                 />
               </div>
@@ -105,12 +111,12 @@ export default function Payment({ fee, toggle }) {
                   register={register('code', {
                     required: 'Поле обязательно',
                     pattern: { value: /^(\d{3})$/g, message: 'Код должен состоять из трех цифр' },
+                    onChange: formatCVC,
                   })}
                   errors={errors.code}
                   options={{
                     mode: 'secret',
                     placeholder: '123',
-                    onChange: formatCVC,
                   }}
                 />
               </div>

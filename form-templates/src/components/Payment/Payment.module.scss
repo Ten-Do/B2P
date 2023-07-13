@@ -78,6 +78,10 @@ img {
     }
 
     .card__attribites {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+
       .number__attribute {
         margin-bottom: 15px;
       }

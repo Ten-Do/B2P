@@ -52,11 +52,11 @@ export default function Unipay({ toggle }) {
           title='Введите сумму заказа'
           register={register('amount', {
             required: 'Поле обязательно',
+            onChange: formatAmount,
           })}
           errors={errors.amount}
           options={{
             placeholder: '0',
-            onChange: formatAmount,
           }}
         />
 
