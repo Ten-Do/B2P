@@ -43,6 +43,17 @@ label {
       margin: auto;
     }
   }
+
+  & .error-container {
+    position: relative;
+
+    & p {
+      color: $error-color;
+      font-size: 14px;
+      position: absolute;
+      top: 0;
+    }
+  }
 }
 
 input {
@@ -50,7 +61,6 @@ input {
   width: $width;
   max-width: $input__maxwidth;
   min-height: $input__minheight;
-  margin-bottom: $input__margin-bottom;
   border-bottom: 1px solid $input__border-color;
   padding: 10px 0;
 

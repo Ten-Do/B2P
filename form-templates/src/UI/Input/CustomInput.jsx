@@ -8,7 +8,7 @@ const CustomInput = ({ register, title, errors, options }) => {
     <label className={options?.type === 'checkbox' ? 'checkbox__label' : ''}>
       {title}
       <input {...register} {...options} />
-      {errors && <p>{errors.message}</p>}
+      <div className='error-container'>{errors && <p>{errors.message}</p>}</div>
     </label>
   )
 }

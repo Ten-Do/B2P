@@ -35,8 +35,7 @@ $h1__margin-bottom: 30px;
   .input__container {
     position: relative;
     display: grid;
-    row-gap: 30px;
-
+    row-gap: 40px;
     margin-bottom: 50px;
   }
 }
@@ -46,16 +45,6 @@ h1 {
   font-size: $h1-size;
   color: $h1-color;
   margin-bottom: $h1__margin-bottom;
-}
-
-p {
-  color: $error-color;
-  position: absolute;
-  font-size: 14px;
-}
-
-p::before {
-  display: inline;
 }
 
 .amount__icon {
