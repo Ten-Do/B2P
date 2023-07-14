@@ -23,6 +23,7 @@ import CustomButtonStyles from '../../UI/Button/CustomButton.module.scss'
 import CustomInput from '../../UI/Input/CustomInput'
 import Footer from '../Footer/Footer'
 import { fetchCardInfo } from '../../utils/payment/fetchCardInfo'
+import { _formatAmount } from '../../utils/formFields/formatAmount'
 
 // let ButtonSubmitDisabled = cn([
 //   `${CustomButtonStyles.submit__button}`,
@@ -32,8 +33,12 @@ import { fetchCardInfo } from '../../utils/payment/fetchCardInfo'
 // let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
 
 let SuaiPayButton = cn([`${CustomButtonStyles.submit__button}`, `${CustomButtonStyles.SuaiPay__button}`])
-
-export default function Payment({ fee, toggle }) {
+const getFee = (amount, fee, minFee) => {
+  amount = +amount.replaceAll(',', '') * 100
+  if (fee * amount < minFee) return minFee * 0.01
+  return (fee * amount) / 10000
+}
+export default function Payment({ toggle }) {
   const {
     register,
     handleSubmit,
@@ -44,6 +49,7 @@ export default function Payment({ fee, toggle }) {
     console.log(isValid)
   }
   const [card, setCard] = useState(null) // {}
+  const fee = getFee(watch('amount'), card?.feeInfo.fee, card?.feeInfo.min_fee) || 0
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <section className={PaymentStyles.form__container}>
@@ -139,7 +145,7 @@ export default function Payment({ fee, toggle }) {
           <CustomInput title='Сохранить карту для следующих покупок' options={{ type: 'checkbox' }} />
         </div>
 
-        <div className={PaymentStyles.payment__fee}>Комиссия: {fee ?? 0}₽</div>
+        <div className={PaymentStyles.payment__fee}>Комиссия: {_formatAmount(String(fee))}₽</div>
 
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
@@ -149,10 +155,20 @@ export default function Payment({ fee, toggle }) {
               disabled={!isValid}
               onClick={handleSubmit(console.log)}
             >
-              Оплатить {watch('amount') ?? 0}₽
+              Оплатить {_formatAmount(String(+watch('amount').replaceAll(',', '') + fee))}₽
             </Button>
 
-            <Button className={SuaiPayButton} type={'button'}>
+            <Button
+              className={SuaiPayButton}
+              type={'button'}
+              onClick={() => {
+                fetch('https://5308-194-226-199-9.ngrok-free.app/api/payment_systems', {
+                  headers: { 'ngrok-skip-browser-warning': true },
+                })
+                  .then((res) => res.json())
+                  .then((data) => console.log(data))
+              }}
+            >
               SUAI PAY
             </Button>
           </div>

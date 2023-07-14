@@ -16,7 +16,7 @@ export const formatAmount = ({ target }) => {
   target.setSelectionRange(target.value.length - d, target.value.length - d)
 }
 
-const _formatAmount = (value) => {
+export const _formatAmount = (value) => {
   const parts = value
     .replace(/[^0-9.]/g, '')
     .replace(/\.(?=.*\.)/g, '')
