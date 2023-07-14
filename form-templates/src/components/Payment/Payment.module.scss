@@ -73,8 +73,12 @@ img {
 
     .cvv__info {
       position: absolute;
-      right: 0;
-      top: 1px;
+      right: 20px;
+      top: 4px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .card__attribites {
