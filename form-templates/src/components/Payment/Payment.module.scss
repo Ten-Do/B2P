@@ -74,7 +74,11 @@ img {
     .cvv__info {
       position: absolute;
       right: 0;
-      top: 1px;
+      top: 3px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .card__attribites {
@@ -91,6 +95,7 @@ img {
         gap: 35px;
         position: relative;
         align-items: center;
+        margin-bottom: 10px;
       }
     }
   }

@@ -116,7 +116,7 @@ export default function Payment({ toggle }) {
                   title={'CVV / CVC'}
                   register={register('code', {
                     required: 'Поле обязательно',
-                    pattern: { value: /^(\d{3})$/g, message: 'Код должен состоять из трех цифр' },
+                    pattern: { value: /^(\d{3})$/g, message: 'Трёхзначный код' },
                     onChange: formatCVC,
                   })}
                   errors={errors.code}
