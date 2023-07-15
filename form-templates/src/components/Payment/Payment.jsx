@@ -22,7 +22,7 @@ import Button from '../../UI/Button/CustomButton'
 import CustomButtonStyles from '../../UI/Button/CustomButton.module.scss'
 import CustomInput from '../../UI/Input/CustomInput'
 import Footer from '../Footer/Footer'
-import { fetchCardInfo } from '../../utils/payment/fetchCardInfo'
+import fetchCardInfo from '../../utils/payment/fetchCardInfo'
 import { _formatAmount } from '../../utils/formFields/formatAmount'
 
 // let ButtonSubmitDisabled = cn([
@@ -45,11 +45,9 @@ export default function Payment({ toggle }) {
     watch,
     formState: { errors, isValid },
   } = useFormContext()
-  window.showIsValid = () => {
-    console.log(isValid)
-  }
+
   const [card, setCard] = useState(null) // {}
-  const fee = getFee(watch('amount'), card?.feeInfo.fee, card?.feeInfo.min_fee) || 0
+  const fee = getFee(watch('amount'), card?.fee, card?.min_fee) || 0
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <section className={PaymentStyles.form__container}>
@@ -58,7 +56,7 @@ export default function Payment({ toggle }) {
         </span>
         <div
           style={
-            card
+            card?.colors
               ? { boxShadow: `0 0 18px ${card?.colors?.main}`, transition: 'all 0.5s ease' }
               : { transition: 'all 0.5s ease' }
           }
@@ -145,7 +143,9 @@ export default function Payment({ toggle }) {
           <CustomInput title='Сохранить карту для следующих покупок' options={{ type: 'checkbox' }} />
         </div>
 
-        <div className={PaymentStyles.payment__fee}>Комиссия: {_formatAmount(String(fee))}₽</div>
+        <div className={PaymentStyles.payment__fee}>
+          Комиссия{fee ? `: ${_formatAmount(String(fee))}₽` : ' зависит от платежной системы'}
+        </div>
 
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
