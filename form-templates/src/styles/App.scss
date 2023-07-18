@@ -76,7 +76,7 @@
   background: white;
   position: relative;
   margin: 0 20px;
-  max-height: calc(100vh - 40px);
+  max-height: calc(80vh - 40px);
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -88,8 +88,7 @@
   animation-duration: 0.5s;
 }
 
-.modal-header,
-.modal-footer {
+.modal-header {
   display: flex;
   align-items: center;
   padding: 1rem;
@@ -97,10 +96,6 @@
 .modal-header {
   border-bottom: 1px solid #dbdbdb;
   justify-content: space-between;
-}
-.modal-footer {
-  border-top: 1px solid #dbdbdb;
-  justify-content: flex-end;
 }
 .modal-close {
   font-size: 36px;
@@ -147,9 +142,7 @@
 }
 
 .notify {
-  width: 90vw;
-  max-width: 320px;
-  height: 80vh;
+  min-height: 40vh;
   flex-direction: column;
   gap: 30px;
 }

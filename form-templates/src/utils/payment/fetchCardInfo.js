@@ -37,7 +37,7 @@ const _identifyPaymentSystem = async (cardNumber) => {
 }
 
 const _identifyBank = async (cardNum) => {
-  if (!CACHE.B[cardNum]) {
+  if (!(cardNum in CACHE.B)) {
     CACHE.B[cardNum] = await fetch('./banks/paymentData.json')
       .then((res) => res.json())
       .then(({ banks }) => {

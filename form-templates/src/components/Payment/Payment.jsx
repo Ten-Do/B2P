@@ -1,6 +1,6 @@
 /* eslint-disable import/order */
 import cn from 'classnames'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Tooltip } from 'react-tooltip'
 
@@ -43,7 +43,7 @@ export default function Payment({ toggle, showNotify }) {
 
   const [card, setCard] = useState(null) // {}
   const fee = getFee(watch('amount'), card?.fee, card?.min_fee) || 0
-
+  const timer = useRef(null)
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <section className={PaymentStyles.form__container}>
@@ -73,9 +73,14 @@ export default function Payment({ toggle, showNotify }) {
                   required: 'Поле обязательно',
                   validate: isValidCardNum,
                   onChange: (e) => {
-                    fetchCardInfo(e.target.value).then((cardInfo) => {
-                      setCard(cardInfo)
-                    })
+                    clearTimeout(timer.current)
+                    timer.current = setTimeout(
+                      () =>
+                        fetchCardInfo(e.target.value).then((cardInfo) => {
+                          setCard(cardInfo)
+                        }),
+                      300,
+                    )
                     formatCardNumber(e)
                   },
                 })}
@@ -107,10 +112,9 @@ export default function Payment({ toggle, showNotify }) {
               <div>
                 {/* CVV CODE INPUT */}
                 <CustomInput
-                  title={'CVV / CVC'}
                   register={register('code', {
                     required: 'Поле обязательно',
-                    pattern: { value: /^(\d{3})$/g, message: 'код должен быть трехзначным' },
+                    pattern: { value: /^(\d{3})$/g, message: 'Код должен состоять из трех цифр' },
                     onChange: formatCVC,
                   })}
                   errors={errors.code}
