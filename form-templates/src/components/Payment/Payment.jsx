@@ -24,13 +24,7 @@ import CustomInput from '../../UI/Input/CustomInput'
 import Footer from '../Footer/Footer'
 import fetchCardInfo from '../../utils/payment/fetchCardInfo'
 import { _formatAmount } from '../../utils/formFields/formatAmount'
-
-// let ButtonSubmitDisabled = cn([
-//   `${CustomButtonStyles.submit__button}`,
-//   ` ${CustomButtonStyles.submit__button__disabled}`,
-// ])
-
-// let ButtonSubmitEnabled = cn([`${CustomButtonStyles.submit__button}`, ` ${CustomButtonStyles.submit__button__enabled}`])
+import { Service } from '../../servises/service'
 
 let SuaiPayButton = cn([`${CustomButtonStyles.submit__button}`, `${CustomButtonStyles.SuaiPay__button}`])
 const getFee = (amount, fee, minFee) => {
@@ -38,16 +32,18 @@ const getFee = (amount, fee, minFee) => {
   if (fee * amount < minFee) return minFee * 0.01
   return (fee * amount) / 10000
 }
-export default function Payment({ toggle }) {
+export default function Payment({ toggle, showNotify }) {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors, isValid },
+    reset,
   } = useFormContext()
 
   const [card, setCard] = useState(null) // {}
   const fee = getFee(watch('amount'), card?.fee, card?.min_fee) || 0
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <section className={PaymentStyles.form__container}>
@@ -114,7 +110,7 @@ export default function Payment({ toggle }) {
                   title={'CVV / CVC'}
                   register={register('code', {
                     required: 'Поле обязательно',
-                    pattern: { value: /^(\d{3})$/g, message: 'Код должен состоять из трех цифр' },
+                    pattern: { value: /^(\d{3})$/g, message: 'код должен быть трехзначным' },
                     onChange: formatCVC,
                   })}
                   errors={errors.code}
@@ -140,7 +136,7 @@ export default function Payment({ toggle }) {
 
         {/* CHECKBOX INPUT */}
         <div className={PaymentStyles.savecard__block}>
-          <CustomInput title='Сохранить карту для следующих покупок' options={{ type: 'checkbox' }} />
+          <CustomInput title='Сохранить карту для следующих операций' options={{ type: 'checkbox' }} />
         </div>
 
         <div className={PaymentStyles.payment__fee}>
@@ -149,26 +145,24 @@ export default function Payment({ toggle }) {
 
         <div className={PaymentStyles.payment__agreement}>
           <div className={PaymentStyles.buttons__container}>
-            <Button
-              className={isValid && CustomButtonStyles.submit__button__enabled}
-              type='submit'
+            <button
+              className={isValid ? CustomButtonStyles.submit__button__enabled : ''}
               disabled={!isValid}
-              onClick={handleSubmit(console.log)}
+              onClick={handleSubmit((data) => {
+                Service.makeOperation(data)
+                  .then((...params) => {
+                    toggle()
+                    showNotify(true)
+                    reset()
+                    localStorage.clear()
+                  })
+                  .catch(() => showNotify(false))
+              })}
             >
               Оплатить {_formatAmount(String(+watch('amount').replaceAll(',', '') + fee))}₽
-            </Button>
+            </button>
 
-            <Button
-              className={SuaiPayButton}
-              type={'button'}
-              onClick={() => {
-                fetch('https://5308-194-226-199-9.ngrok-free.app/api/payment_systems', {
-                  headers: { 'ngrok-skip-browser-warning': true },
-                })
-                  .then((res) => res.json())
-                  .then((data) => console.log(data))
-              }}
-            >
+            <Button className={SuaiPayButton} type='button'>
               SUAI PAY
             </Button>
           </div>

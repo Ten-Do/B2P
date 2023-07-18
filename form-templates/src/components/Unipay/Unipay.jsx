@@ -17,6 +17,7 @@ export default function Unipay({ toggle }) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isValid },
   } = useFormContext()
 
@@ -73,7 +74,16 @@ export default function Unipay({ toggle }) {
         />
       </div>
 
-      <Button className={isValid && CustomButtonStyles.submit__button__enabled} onClick={toggle} disabled={!isValid}>
+      <Button
+        className={isValid ? CustomButtonStyles.submit__button__enabled : ''}
+        onClick={(e) => {
+          toggle()
+          localStorage.setItem('amount', watch('amount'))
+          localStorage.setItem('email', watch('email'))
+          localStorage.setItem('description', watch('description'))
+        }}
+        disabled={!isValid}
+      >
         Создать
       </Button>
     </div>

@@ -1,6 +1,6 @@
 const headers = { 'ngrok-skip-browser-warning': true, 'Content-Type': 'application/json' }
 
-const API = 'https://cdc6-194-226-199-9.ngrok-free.app/api' || 'http://localhost:5000/api'
+const API = 'https://c372-194-226-199-9.ngrok-free.app/api' // 'http://localhost:5000/api'
 
 const $api = {
   get: async (url) => {

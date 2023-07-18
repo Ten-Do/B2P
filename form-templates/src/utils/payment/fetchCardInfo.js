@@ -57,7 +57,6 @@ const _identifyBank = async (cardNum) => {
 const fetchCardInfo = async (cardNum) => {
   cardNum = cardNum.replace(/\D/g, '').slice(0, 11)
   if (cardNum.length < 6) return await _identifyPaymentSystem(cardNum)
-
   const [paymentSystem, bank] = await Promise.all([_identifyPaymentSystem(cardNum), _identifyBank(cardNum)])
 
   return {

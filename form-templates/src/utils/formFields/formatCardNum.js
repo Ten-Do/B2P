@@ -25,23 +25,16 @@ const _formatCardNumber = (value) => {
 
 export const cardNumField_onKeyPress = (event) => {
   const pos = event.target.selectionStart
-
   if (event.key === 'Backspace') {
     if (event.target.value.charAt(pos - 1) === ' ') {
       event.target.setSelectionRange(pos - 1, pos - 1)
     }
   } else if (!isNaN(event.key)) {
     if (event.target.value.charAt(pos) === ' ' || event.target.value.charAt(pos) === '') {
-      setTimeout(() => event.target.setSelectionRange(pos + 2, pos + 2), 0)
+      window.requestAnimationFrame(() => event.target.setSelectionRange(pos + 2, pos + 2))
+      // setTimeout(() => event.target.setSelectionRange(pos + 2, pos + 2), 1000)
     }
-  } else if (
-    event.key !== 'ArrowUp' &&
-    event.key !== 'ArrowDown' &&
-    event.key !== 'ArrowLeft' &&
-    event.key !== 'ArrowRight'
-  ) {
-    setTimeout(() => {
-      event.target.setSelectionRange(pos, pos)
-    }, 0)
+  } else if (event.key.length === 1 && !event.ctrlKey) {
+    event.preventDefault()
   }
 }

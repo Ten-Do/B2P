@@ -22,7 +22,7 @@ export const _formatAmount = (value) => {
     .replace(/\.(?=.*\.)/g, '')
     .replace(/^0+/, '')
     .split('.')
-  parts[0] = parts[0].slice(0, 13).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  parts[0] = parts[0].slice(0, 8).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   if (parts[1]) parts[1] = parts[1].slice(0, 2)
   return parts.join('.')
 }
