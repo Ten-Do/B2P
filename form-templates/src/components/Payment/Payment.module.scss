@@ -82,6 +82,10 @@ img {
     }
 
     .card__attribites {
+      gap: 25px;
+      display: flex;
+      flex-direction: column;
+
       .number__attribute {
         margin-bottom: 15px;
       }

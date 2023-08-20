@@ -41,8 +41,10 @@ button {
   width: $width;
   max-width: $button__desktop-width;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     transition: 0.3s all;
+    cursor: pointer;
   }
 
   &:active {
@@ -52,8 +54,10 @@ button {
   &:disabled {
     background: $button__background-disabled;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: $button__background-disabled-hover;
+      cursor: unset;
     }
 
     &:active {
@@ -96,7 +100,8 @@ button {
 .submit__button__enabled {
   background: $button__background;
 
-  &:hover, &:focus{
+  &:hover,
+  &:focus {
     background: $button__background-hover;
     box-shadow: 0px 1px 20px -5px $button__background;
     cursor: pointer;
@@ -110,7 +115,8 @@ button {
 .SuaiPay__button {
   background: $suaipay__button__background;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background: $suaipay__button__background-hover;
     box-shadow: 0px 1px 20px -5px rgb(0, 0, 120);
   }

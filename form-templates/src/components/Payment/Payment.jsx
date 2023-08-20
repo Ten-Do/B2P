@@ -104,7 +104,7 @@ export default function Payment({ fee, toggle }) {
                   title={'CVV / CVC'}
                   register={register('code', {
                     required: 'Поле обязательно',
-                    pattern: { value: /^(\d{3})$/g, message: 'Код должен состоять из трех цифр' },
+                    pattern: { value: /^(\d{3})$/g, message: 'Код трёхзначный' },
                   })}
                   errors={errors.code}
                   options={{
@@ -156,10 +156,6 @@ export default function Payment({ fee, toggle }) {
           </div>
         </div>
       </section>
-
-      {/* guap pay component button (config - true ? render : not) */}
-      {/* если поля валидны, функцией разбиваем всё по красоте и submit'им*/}
-      {/* фейковая функция комиссии - когда pan заполнен, отправляем запрос: сигнатура, amount, paysystem/card bin */}
 
       <Footer />
     </div>
